@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Glicare - Registrar Medicação</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-tint": "#005f9c",
+                      "surface-container-high": "#dfe3e6",
+                      "on-primary": "#ecf3ff",
+                      "surface-container": "#e5e9eb",
+                      "primary": "#005f9c",
+                      "on-background": "#2c2f31",
+                      "error": "#b31b25",
+                      "tertiary-container": "#f8a010",
+                      "tertiary-dim": "#714600",
+                      "on-tertiary": "#fff0e3",
+                      "on-primary-fixed": "#001123",
+                      "on-secondary-fixed": "#004842",
+                      "primary-fixed-dim": "#4ea3f1",
+                      "primary-container": "#5eb0ff",
+                      "primary-fixed": "#5eb0ff",
+                      "on-error": "#ffefee",
+                      "error-dim": "#9f0519",
+                      "on-error-container": "#570008",
+                      "secondary-dim": "#005a53",
+                      "surface-bright": "#f5f7f9",
+                      "background": "#f5f7f9",
+                      "primary-dim": "#005389",
+                      "surface-container-low": "#eef1f3",
+                      "surface": "#f5f7f9",
+                      "on-primary-container": "#002e50",
+                      "on-secondary-fixed-variant": "#00675f",
+                      "secondary": "#00675f",
+                      "on-primary-fixed-variant": "#00375e",
+                      "tertiary": "#815100",
+                      "on-secondary": "#bffff6",
+                      "tertiary-fixed": "#f8a010",
+                      "on-tertiary-fixed-variant": "#563400",
+                      "outline": "#747779",
+                      "secondary-fixed": "#78f7e9",
+                      "outline-variant": "#abadaf",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-fixed": "#2a1700",
+                      "inverse-on-surface": "#9a9d9f",
+                      "secondary-container": "#78f7e9",
+                      "on-tertiary-container": "#4a2c00",
+                      "surface-container-highest": "#d9dde0",
+                      "tertiary-fixed-dim": "#e79400",
+                      "surface-variant": "#d9dde0",
+                      "on-secondary-container": "#005c55",
+                      "on-surface-variant": "#595c5e",
+                      "error-container": "#fb5151",
+                      "inverse-surface": "#0b0f10",
+                      "surface-dim": "#d0d5d8",
+                      "secondary-fixed-dim": "#69e8db",
+                      "inverse-primary": "#5eb0ff",
+                      "on-surface": "#2c2f31"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Plus Jakarta Sans"],
+                      "display": ["Plus Jakarta Sans"],
+                      "body": ["Manrope"],
+                      "label": ["Manrope"]
+              }
+            },
+          }
+        }
+      </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .font-headline { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+      </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- TopAppBar (Transactional Screen - No Global Nav Shell) -->
+<header class="sticky top-0 z-50 bg-slate-50/80 backdrop-blur-lg px-6 py-4">
+<div class="flex justify-between items-center max-w-screen-xl mx-auto">
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-sky-50 transition-colors active:scale-95">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="text-xl font-extrabold text-sky-900 tracking-tight font-headline">Registrar Medicação</h1>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden">
+<img alt="User Profile" data-alt="A professional studio portrait of a healthy middle-aged man with a kind smile, wearing a modern white clinical jacket against a soft gradient blue background. The lighting is high-key and optimistic, reflecting a premium medical wellness aesthetic with soft shadows and high clarity. The overall mood is trustworthy, serene, and technologically advanced." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWctVtXAy6fL50Yktj6UbtE8o8PDHAikj2wHIK1FJ_P90UvdL583cxJKOSRxBje8vqUIBjY4rKjkJQmlz06osFBa4CLoRnB73SjnpYcrQBi7p0MGiQ7o1PQYBlzLOf9ynyJtzKITR7Tl_b886K0DFwFGvHCG8NbmNkiC80p4fM_2I2TN0OUyusvuLjs_yy3TejwZbsJPGi8OPl_YkSA9iIl0YKFgmTk695BqlLEiCdpQaru3XUhKHV2uuTMIdlD1BdbXTV7CGF"/>
+</div>
+</div>
+</header>
+<main class="max-w-2xl mx-auto px-6 mt-8 space-y-10">
+<!-- Search Section -->
+<section class="space-y-4">
+<div class="relative group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">search</span>
+</div>
+<input class="w-full bg-surface-container-lowest border-none rounded-xl py-4 pl-12 pr-4 shadow-sm focus:ring-2 focus:ring-primary/20 transition-all text-body placeholder:text-outline-variant" placeholder="Buscar medicação..." type="text"/>
+</div>
+</section>
+<!-- Frequent Medications (Bento Layout) -->
+<section class="space-y-6">
+<div class="flex items-center justify-between">
+<h2 class="text-lg font-bold font-headline text-on-surface">Medicações Frequentes</h2>
+<span class="text-sm font-semibold text-primary">Ver todos</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+<!-- Card 1 -->
+<button class="flex flex-col items-start p-5 bg-surface-container-lowest rounded-xl hover:bg-sky-50 transition-all border border-transparent hover:border-primary/10 group text-left">
+<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">pill</span>
+</div>
+<span class="font-bold text-on-surface font-headline leading-tight">Metformina</span>
+<span class="text-xs text-on-surface-variant mt-1">500mg • Comprimido</span>
+</button>
+<!-- Card 2 -->
+<button class="flex flex-col items-start p-5 bg-surface-container-lowest rounded-xl hover:bg-secondary-container/20 transition-all border border-transparent hover:border-secondary/10 group text-left">
+<div class="w-12 h-12 rounded-full bg-secondary-container/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-secondary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">vaccines</span>
+</div>
+<span class="font-bold text-on-surface font-headline leading-tight">Insulina NPH</span>
+<span class="text-xs text-on-surface-variant mt-1">10 UI • Injeção</span>
+</button>
+<!-- Card 3 -->
+<button class="flex flex-col items-start p-5 bg-surface-container-lowest rounded-xl hover:bg-tertiary-container/10 transition-all border border-transparent hover:border-tertiary/10 group text-left">
+<div class="w-12 h-12 rounded-full bg-tertiary-container/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-tertiary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">fluid_med</span>
+</div>
+<span class="font-bold text-on-surface font-headline leading-tight">Xarope Vit.</span>
+<span class="text-xs text-on-surface-variant mt-1">5ml • Líquido</span>
+</button>
+</div>
+</section>
+<!-- Log Form -->
+<section class="bg-surface-container-low rounded-3xl p-8 space-y-8">
+<div class="space-y-6">
+<!-- Dosage Field -->
+<div class="space-y-2">
+<label class="text-sm font-bold text-on-surface-variant ml-1 font-label">Dosagem</label>
+<div class="flex gap-3">
+<input class="flex-1 bg-surface-container-lowest border-none rounded-xl py-4 px-4 focus:ring-2 focus:ring-primary/20 text-on-surface font-semibold" placeholder="Ex: 500" type="text"/>
+<select class="w-32 bg-surface-container-lowest border-none rounded-xl py-4 px-4 focus:ring-2 focus:ring-primary/20 text-on-surface-variant font-medium">
+<option>mg</option>
+<option>ml</option>
+<option>unidades</option>
+<option>comprimido</option>
+</select>
+</div>
+</div>
+<!-- Frequency Field -->
+<div class="space-y-2">
+<label class="text-sm font-bold text-on-surface-variant ml-1 font-label">Frequência</label>
+<div class="grid grid-cols-2 gap-3">
+<button class="py-4 px-4 bg-primary text-on-primary rounded-xl font-bold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">event_repeat</span>
+                            Diário
+                        </button>
+<button class="py-4 px-4 bg-surface-container-lowest text-on-surface-variant rounded-xl font-bold border border-outline-variant/10 hover:bg-surface-container transition-colors">
+                            Personalizado
+                        </button>
+</div>
+</div>
+<!-- Time and Details -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-sm font-bold text-on-surface-variant ml-1 font-label">Horário da Dose</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border-none rounded-xl py-4 px-4 focus:ring-2 focus:ring-primary/20 text-on-surface font-bold text-lg" type="time" value="08:00"/>
+<div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+<span class="material-symbols-outlined text-primary">schedule</span>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-bold text-on-surface-variant ml-1 font-label">Tipo de Lembrete</label>
+<div class="flex items-center justify-between bg-surface-container-lowest px-4 py-4 rounded-xl">
+<span class="font-medium text-on-surface">Notificação Push</span>
+<div class="w-12 h-6 bg-primary rounded-full relative flex items-center px-1">
+<div class="w-4 h-4 bg-white rounded-full ml-auto"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Motivational Insight (Editorial Style) -->
+<div class="p-4 bg-sky-100/50 rounded-2xl border border-sky-200/30 flex gap-4 items-start">
+<span class="material-symbols-outlined text-primary mt-0.5">lightbulb</span>
+<p class="text-sm text-sky-900 leading-relaxed">
+                    Manter a consistência no horário das medicações ajuda a estabilizar seus níveis glicêmicos em até <span class="font-bold">15%</span>.
+                </p>
+</div>
+</section>
+</main>
+<!-- Bottom Action Area -->
+<div class="fixed bottom-0 left-0 w-full p-6 bg-surface/80 backdrop-blur-md z-50">
+<div class="max-w-2xl mx-auto">
+<button class="w-full bg-primary hover:bg-primary-dim text-white py-5 rounded-full font-extrabold text-lg shadow-xl shadow-primary/20 transition-all active:scale-[0.98] flex items-center justify-center gap-3">
+                Confirmar Registro
+                <span class="material-symbols-outlined">check_circle</span>
+</button>
+</div>
+</div>
+</body></html>

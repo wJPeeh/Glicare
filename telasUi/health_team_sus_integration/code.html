@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Minha Equipe de Saúde - Glicare</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-tint": "#005f9c",
+                        "on-primary": "#ecf3ff",
+                        "background": "#f5f7f9",
+                        "surface-bright": "#f5f7f9",
+                        "tertiary-dim": "#714600",
+                        "on-secondary-fixed-variant": "#00675f",
+                        "primary": "#005f9c",
+                        "secondary-container": "#78f7e9",
+                        "on-background": "#2c2f31",
+                        "secondary-dim": "#005a53",
+                        "on-primary-container": "#002e50",
+                        "outline-variant": "#abadaf",
+                        "surface-container-highest": "#d9dde0",
+                        "secondary": "#00675f",
+                        "on-primary-fixed-variant": "#00375e",
+                        "primary-fixed-dim": "#4ea3f1",
+                        "primary-container": "#5eb0ff",
+                        "on-surface": "#2c2f31",
+                        "tertiary-fixed-dim": "#e79400",
+                        "on-error": "#ffefee",
+                        "on-error-container": "#570008",
+                        "on-tertiary-container": "#4a2c00",
+                        "surface": "#f5f7f9",
+                        "error-container": "#fb5151",
+                        "on-secondary-fixed": "#004842",
+                        "inverse-primary": "#5eb0ff",
+                        "on-tertiary-fixed-variant": "#563400",
+                        "outline": "#747779",
+                        "on-secondary": "#bffff6",
+                        "surface-variant": "#d9dde0",
+                        "secondary-fixed-dim": "#69e8db",
+                        "secondary-fixed": "#78f7e9",
+                        "inverse-on-surface": "#9a9d9f",
+                        "surface-dim": "#d0d5d8",
+                        "error-dim": "#9f0519",
+                        "inverse-surface": "#0b0f10",
+                        "on-primary-fixed": "#001123",
+                        "on-surface-variant": "#595c5e",
+                        "on-tertiary": "#fff0e3",
+                        "primary-fixed": "#5eb0ff",
+                        "tertiary": "#815100",
+                        "on-secondary-container": "#005c55",
+                        "surface-container-low": "#eef1f3",
+                        "tertiary-container": "#f8a010",
+                        "surface-container": "#e5e9eb",
+                        "on-tertiary-fixed": "#2a1700",
+                        "error": "#b31b25",
+                        "tertiary-fixed": "#f8a010",
+                        "primary-dim": "#005389",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#dfe3e6"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        .tonal-shift-bg {
+            background-color: #f0f4f8;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body text-on-surface antialiased selection:bg-primary/10">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl">
+<div class="flex justify-between items-center px-6 h-16 w-full max-w-2xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high ring-2 ring-primary/10 active:scale-95 transition-transform">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Close up portrait of a young man with a friendly expression in soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOParYmGlNuQERzMM9d_f8HxqB_ORGWLO2EUCG9th5dPL3WS1q5hAZFD3_4A5s9yHl94bwtnAInXWTSofCMGb2jYOwDzEM3Suxy_ZSWigpa6EqvXIhx9NSDjiDQzVpQq61oG2EE_3T9u8GN-52unvo5DW_V7IoIVM_taNmBccbRmczopmPyKkVAnvwjnH7iPyXDwMlPbYXPqJ0Cec_0FagKKBMtqqo54ZEIl__ynLlzjjW0-Pqf0gpuDglkg7qRlOUzcEGVt1oep0"/>
+</div>
+<h1 class="font-headline font-bold text-lg tracking-tight text-primary">Minha Equipe</h1>
+</div>
+<button class="text-primary hover:opacity-80 transition-opacity active:scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</div>
+</header>
+<main class="pt-20 pb-32 px-6 max-w-2xl mx-auto space-y-8">
+<!-- SUS Integration Card (Bento Style) -->
+<section class="space-y-4">
+<div class="bg-surface-container-lowest rounded-[2rem] overflow-hidden shadow-[0px_12px_32px_rgba(44,47,49,0.06)] border border-white/50">
+<!-- Status Banner -->
+<div class="bg-secondary px-6 py-3 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-secondary text-sm" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label text-xs font-bold uppercase tracking-widest text-on-secondary">Conectado ao SUS</span>
+</div>
+<span class="font-label text-[10px] font-medium text-on-secondary opacity-80 uppercase">Sincronizado há 5min</span>
+</div>
+<div class="p-8 space-y-6">
+<div class="flex items-start justify-between">
+<div class="space-y-1">
+<h2 class="font-headline text-2xl font-extrabold text-on-surface tracking-tight">UBS Santa Cecília</h2>
+<p class="text-on-surface-variant text-sm font-medium">Rede Municipal de Saúde • São Paulo</p>
+</div>
+<div class="w-14 h-14 bg-surface-container-low rounded-2xl flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-3xl" data-icon="account_balance">account_balance</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-4 rounded-2xl">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider mb-1">Cartão SUS</p>
+<p class="font-headline text-lg font-bold text-primary tracking-tighter">700 4056 9912 0004</p>
+</div>
+<div class="bg-surface-container-low p-4 rounded-2xl">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider mb-1">Vínculo</p>
+<p class="font-headline text-lg font-bold text-on-surface tracking-tighter">Ativo • Permanente</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Data Sharing Controls -->
+<section class="space-y-6">
+<div class="flex items-center justify-between">
+<h3 class="font-headline text-lg font-bold text-on-surface">Compartilhamento de dados</h3>
+<div class="relative inline-flex items-center cursor-pointer">
+<div class="w-12 h-6 bg-primary rounded-full transition-colors"></div>
+<div class="absolute left-7 w-4 h-4 bg-white rounded-full transition-transform shadow-sm"></div>
+</div>
+</div>
+<div class="bg-surface-container-low/50 rounded-[2rem] p-6 space-y-4">
+<p class="font-label text-xs font-bold text-on-surface-variant uppercase tracking-widest">Sua equipe pode ver:</p>
+<div class="space-y-3">
+<!-- Permission Item -->
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-2xl">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="glucose">glucose</span>
+</div>
+<span class="font-body font-semibold text-on-surface">Histórico de Glicemia</span>
+</div>
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<!-- Permission Item -->
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-2xl">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="medication">medication</span>
+</div>
+<span class="font-body font-semibold text-on-surface">Uso de Medicamentos</span>
+</div>
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<!-- Permission Item -->
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-2xl">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-tertiary-container/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="nutrition">nutrition</span>
+</div>
+<span class="font-body font-semibold text-on-surface">Registro Alimentar</span>
+</div>
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Professional Profile Card -->
+<section class="space-y-4 pb-12">
+<h3 class="font-headline text-lg font-bold text-on-surface">Médico Responsável</h3>
+<div class="bg-surface-container-lowest rounded-[2rem] p-8 shadow-[0px_12px_32px_rgba(0,0,0,0.04)] border border-white">
+<div class="flex items-center gap-6 mb-8">
+<div class="relative">
+<div class="w-20 h-20 rounded-full overflow-hidden bg-surface-container-high ring-4 ring-background shadow-lg">
+<img alt="Dra. Ana Silva" class="w-full h-full object-cover" data-alt="Professional portrait of a middle-aged female doctor smiling in a clean white medical coat with soft office lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIGUwid07NHwSaZcoO4yAGP3UfrlOabBHAT5WstKbZDnbKZiQFga6_iAY69U96-A4B36oMIZmDdHNt1B2lHmUnNR7H-g2_TSO0ms2DcwcOOUqWH8Spwn1gcqBBO6FYHCsrvkKhSArDkEyl6TUiYYL8eoftuqfCFDqEHti9PM50coZduAIY3F1--uOmR4LeWxokWivU_5z5-Ojti7BiHQWUtelI0ZyoVbJKumNsrp60j_UsnOWJer0vL4_k7ZPiFAdM3NRBeqFPdwg"/>
+</div>
+<div class="absolute -bottom-1 -right-1 w-6 h-6 bg-secondary border-2 border-white rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-[12px] text-on-secondary" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="space-y-1">
+<h4 class="font-headline text-xl font-bold text-on-surface tracking-tight">Dra. Ana Silva</h4>
+<p class="text-secondary font-semibold text-sm">Endocrinologista • CRM 123456</p>
+<div class="flex items-center gap-1 text-on-surface-variant/60 text-xs">
+<span class="material-symbols-outlined text-[14px]" data-icon="location_on">location_on</span>
+<span>UBS Santa Cecília • Sala 14</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 gap-3">
+<button class="w-full py-4 px-6 bg-primary text-on-primary rounded-full font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-all active:scale-95 shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-lg" data-icon="chat_bubble">chat_bubble</span>
+                        Enviar mensagem
+                    </button>
+<button class="w-full py-4 px-6 border-2 border-primary/20 text-primary rounded-full font-bold flex items-center justify-center gap-2 hover:bg-primary/5 transition-all active:scale-95">
+<span class="material-symbols-outlined text-lg" data-icon="calendar_month">calendar_month</span>
+                        Agendar consulta
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white dark:bg-slate-950 rounded-t-[2rem] z-50 shadow-[0px_-12px_32px_rgba(0,0,0,0.06)]">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1.5 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-['Manrope'] text-[10px] font-semibold uppercase tracking-wider mt-1">Início</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1.5 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+<span class="font-['Manrope'] text-[10px] font-semibold uppercase tracking-wider mt-1">Gráficos</span>
+</a>
+<button class="flex items-center justify-center w-14 h-14 bg-primary text-white rounded-2xl shadow-lg shadow-primary/30 -mt-8 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined text-3xl" data-icon="add">add</span>
+</button>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1.5 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="font-['Manrope'] text-[10px] font-semibold uppercase tracking-wider mt-1">Alertas</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-2xl px-3 py-1.5 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-['Manrope'] text-[10px] font-semibold uppercase tracking-wider mt-1">Perfil</span>
+</a>
+</nav>
+</body></html>

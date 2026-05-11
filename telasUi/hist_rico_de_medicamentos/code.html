@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Glicare - Histórico de Remédios</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-tint": "#005f9c",
+                      "surface-container-high": "#dfe3e6",
+                      "on-primary": "#ecf3ff",
+                      "surface-container": "#e5e9eb",
+                      "primary": "#005f9c",
+                      "on-background": "#2c2f31",
+                      "error": "#b31b25",
+                      "tertiary-container": "#f8a010",
+                      "tertiary-dim": "#714600",
+                      "on-tertiary": "#fff0e3",
+                      "on-primary-fixed": "#001123",
+                      "on-secondary-fixed": "#004842",
+                      "primary-fixed-dim": "#4ea3f1",
+                      "primary-container": "#5eb0ff",
+                      "primary-fixed": "#5eb0ff",
+                      "on-error": "#ffefee",
+                      "error-dim": "#9f0519",
+                      "on-error-container": "#570008",
+                      "secondary-dim": "#005a53",
+                      "surface-bright": "#f5f7f9",
+                      "background": "#f5f7f9",
+                      "primary-dim": "#005389",
+                      "surface-container-low": "#eef1f3",
+                      "surface": "#f5f7f9",
+                      "on-primary-container": "#002e50",
+                      "on-secondary-fixed-variant": "#00675f",
+                      "secondary": "#00675f",
+                      "on-primary-fixed-variant": "#00375e",
+                      "tertiary": "#815100",
+                      "on-secondary": "#bffff6",
+                      "tertiary-fixed": "#f8a010",
+                      "on-tertiary-fixed-variant": "#563400",
+                      "outline": "#747779",
+                      "secondary-fixed": "#78f7e9",
+                      "outline-variant": "#abadaf",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-fixed": "#2a1700",
+                      "inverse-on-surface": "#9a9d9f",
+                      "secondary-container": "#78f7e9",
+                      "on-tertiary-container": "#4a2c00",
+                      "surface-container-highest": "#d9dde0",
+                      "tertiary-fixed-dim": "#e79400",
+                      "surface-variant": "#d9dde0",
+                      "on-secondary-container": "#005c55",
+                      "on-surface-variant": "#595c5e",
+                      "error-container": "#fb5151",
+                      "inverse-surface": "#0b0f10",
+                      "surface-dim": "#d0d5d8",
+                      "secondary-fixed-dim": "#69e8db",
+                      "inverse-primary": "#5eb0ff",
+                      "on-surface": "#2c2f31"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Plus Jakarta Sans"],
+                      "display": ["Plus Jakarta Sans"],
+                      "body": ["Manrope"],
+                      "label": ["Manrope"]
+              }
+            },
+          }
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .headline-font { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        .tonal-layering { background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(229, 233, 235, 0.4) 100%); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-slate-50/80 backdrop-blur-lg">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-screen-xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img alt="User Profile" data-alt="A professional headshot of a middle-aged male patient with a friendly expression, set against a clean, soft-focus clinic background. The lighting is bright and high-key, emphasizing a clean medical aesthetic with soft blue and white tones that match the Glicare brand identity. The mood is calm and healthy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuApZzWBOkKJL7sVUOjofNtE-ObJn8MCeezgzbn4rdC9kRCWyaaSJOdYBbSt9lgJSAc_xQVISqH6jTMLTemrFir2cin7G0a9jQX89zzyPKqWkYANiJn9cHWmsYCfMsK77Qohmvu-QOnHdXT3DhrTMmzW7ubrl7Omo-2tbqZ14Yk422GBTxCs_aQGGxtt0FN6JKmDQSsBm3_A3nq5bE2C-7-v1RBRQLr-ygmPPgNiostzlTgMNr0KW3Op-v11rcn40HhdHj6QrLq_"/>
+</div>
+<h1 class="text-2xl font-extrabold text-sky-900 tracking-widest headline-font">Glicare</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-sky-50 transition-colors rounded-full text-sky-800">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-screen-md mx-auto">
+<!-- Page Title & Header Section -->
+<div class="mb-10">
+<h2 class="text-3xl font-extrabold text-primary headline-font tracking-tight mb-2">Histórico de Remédios</h2>
+<p class="text-on-surface-variant text-sm">Acompanhe seu plano de tratamento e adesão diária.</p>
+</div>
+<!-- Toggle Tabs -->
+<div class="bg-surface-container-low p-1.5 rounded-2xl flex items-center mb-8">
+<button class="flex-1 py-3 px-4 rounded-xl bg-surface-container-lowest shadow-sm text-primary font-bold text-sm transition-all">
+                Hoje
+            </button>
+<button class="flex-1 py-3 px-4 rounded-xl text-on-surface-variant font-semibold text-sm hover:text-primary transition-all">
+                Anteriores
+            </button>
+</div>
+<!-- Timeline Section -->
+<div class="space-y-10 relative">
+<!-- Simple Vertical Line Decor -->
+<div class="absolute left-6 top-0 bottom-0 w-px bg-surface-container-highest z-0"></div>
+<!-- Log Entry 1 -->
+<div class="relative z-10">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Realizado • 08:00</span>
+</div>
+</div>
+<div class="ml-6 bg-surface-container-lowest p-6 rounded-2xl shadow-[0px_12px_32px_rgba(44,47,49,0.06)] border border-white/40">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-xl font-bold text-on-surface headline-font">Metformina</h3>
+<p class="text-on-surface-variant font-medium">850mg • Comprimido</p>
+</div>
+<span class="bg-secondary/10 text-secondary text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Tomado</span>
+</div>
+<div class="mt-4 flex items-center gap-2 text-on-surface-variant text-xs">
+<span class="material-symbols-outlined text-sm">info</span>
+<span>Ingerido com café da manhã conforme prescrito.</span>
+</div>
+</div>
+</div>
+<!-- Log Entry 2 -->
+<div class="relative z-10">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-full bg-tertiary-container/20 flex items-center justify-center text-tertiary-fixed shadow-sm">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div>
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Pendente • 13:00</span>
+</div>
+</div>
+<div class="ml-6 bg-surface-container-lowest p-6 rounded-2xl shadow-[0px_12px_32px_rgba(44,47,49,0.06)] border border-white/40 opacity-90">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-xl font-bold text-on-surface headline-font">Insulina Basal</h3>
+<p class="text-on-surface-variant font-medium">12 Unidades • Subcutânea</p>
+</div>
+<span class="bg-tertiary-container/20 text-tertiary text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Pendente</span>
+</div>
+<div class="mt-6 flex gap-3">
+<button class="flex-1 bg-primary text-on-primary py-3 rounded-xl font-bold text-sm shadow-md hover:bg-primary-dim transition-all">
+                            Confirmar Dose
+                        </button>
+<button class="px-4 py-3 rounded-xl border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-base">more_horiz</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Log Entry 3 -->
+<div class="relative z-10">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant shadow-sm">
+<span class="material-symbols-outlined">medication</span>
+</div>
+<div>
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Próximo • 20:00</span>
+</div>
+</div>
+<div class="ml-6 bg-surface-container-low/50 p-6 rounded-2xl border border-dashed border-outline-variant/50">
+<div class="flex justify-between items-start opacity-60">
+<div>
+<h3 class="text-xl font-bold text-on-surface headline-font">Sinvastatina</h3>
+<p class="text-on-surface-variant font-medium">20mg • Comprimido</p>
+</div>
+<span class="bg-surface-container-highest text-on-surface-variant text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Agendado</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Summary Insight Bento -->
+<div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-primary-container/20 p-8 rounded-[2rem] flex flex-col justify-between min-h-[180px]">
+<span class="text-primary font-bold text-xs uppercase tracking-widest">Adesão Semanal</span>
+<div class="flex items-baseline gap-2">
+<span class="text-5xl font-extrabold text-primary headline-font">94%</span>
+<span class="text-secondary font-bold text-sm">+2%</span>
+</div>
+<p class="text-on-primary-container text-xs font-medium leading-relaxed">Você manteve uma excelente consistência esta semana. Continue assim!</p>
+</div>
+<div class="bg-surface-container-highest p-8 rounded-[2rem] flex flex-col justify-between min-h-[180px]">
+<span class="text-on-surface-variant font-bold text-xs uppercase tracking-widest">Estoque</span>
+<div class="space-y-3">
+<div class="flex justify-between items-center text-sm">
+<span class="font-semibold">Metformina</span>
+<span class="text-error font-bold">5 dias</span>
+</div>
+<div class="w-full bg-white/50 h-1.5 rounded-full overflow-hidden">
+<div class="bg-error w-1/5 h-full rounded-full"></div>
+</div>
+</div>
+<button class="text-primary font-bold text-xs uppercase tracking-widest flex items-center gap-1 mt-4">
+                    Renovar Receita <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+<!-- FAB -->
+<button class="fixed bottom-28 right-6 w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-40">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-white/90 backdrop-blur-2xl px-4 pb-6 pt-3 flex justify-around items-center shadow-[0px_-4px_24px_rgba(0,0,0,0.04)]">
+<a class="flex flex-col items-center justify-center text-slate-400 px-5 py-1.5 hover:text-sky-600 transition-all" href="#">
+<span class="material-symbols-outlined mb-1">analytics</span>
+<span class="font-['Manrope'] text-[11px] font-semibold">Insights</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 px-5 py-1.5 hover:text-sky-600 transition-all" href="#">
+<span class="material-symbols-outlined mb-1">monitor_heart</span>
+<span class="font-['Manrope'] text-[11px] font-semibold">Vitals</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-sky-100/50 text-sky-900 rounded-full px-5 py-1.5 transition-all" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">medication</span>
+<span class="font-['Manrope'] text-[11px] font-semibold">Meds</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 px-5 py-1.5 hover:text-sky-600 transition-all" href="#">
+<span class="material-symbols-outlined mb-1">history</span>
+<span class="font-['Manrope'] text-[11px] font-semibold">History</span>
+</a>
+</nav>
+</body></html>

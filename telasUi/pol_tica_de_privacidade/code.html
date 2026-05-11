@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#f5f7f9",
+                    "secondary": "#00675f",
+                    "tertiary": "#815100",
+                    "primary-fixed": "#5eb0ff",
+                    "primary": "#005f9c",
+                    "on-tertiary-container": "#4a2c00",
+                    "outline-variant": "#abadaf",
+                    "error-container": "#fb5151",
+                    "on-secondary-container": "#005c55",
+                    "secondary-fixed": "#78f7e9",
+                    "outline": "#747779",
+                    "secondary-dim": "#005a53",
+                    "error-dim": "#9f0519",
+                    "on-surface-variant": "#595c5e",
+                    "surface": "#f5f7f9",
+                    "inverse-on-surface": "#9a9d9f",
+                    "on-primary-fixed-variant": "#00375e",
+                    "surface-container-lowest": "#ffffff",
+                    "background": "#f5f7f9",
+                    "surface-container": "#e5e9eb",
+                    "surface-container-highest": "#d9dde0",
+                    "on-secondary-fixed-variant": "#00675f",
+                    "on-secondary": "#bffff6",
+                    "on-primary": "#ecf3ff",
+                    "on-secondary-fixed": "#004842",
+                    "primary-fixed-dim": "#4ea3f1",
+                    "on-surface": "#2c2f31",
+                    "surface-container-low": "#eef1f3",
+                    "surface-variant": "#d9dde0",
+                    "secondary-container": "#78f7e9",
+                    "surface-dim": "#d0d5d8",
+                    "primary-dim": "#005389",
+                    "on-error-container": "#570008",
+                    "secondary-fixed-dim": "#69e8db",
+                    "on-tertiary-fixed-variant": "#563400",
+                    "surface-tint": "#005f9c",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-primary-fixed": "#001123",
+                    "on-primary-container": "#002e50",
+                    "on-tertiary": "#fff0e3",
+                    "primary-container": "#5eb0ff",
+                    "surface-container-high": "#dfe3e6",
+                    "tertiary-fixed": "#f8a010",
+                    "tertiary-container": "#f8a010",
+                    "error": "#b31b25",
+                    "tertiary-fixed-dim": "#e79400",
+                    "inverse-primary": "#5eb0ff",
+                    "on-background": "#2c2f31",
+                    "inverse-surface": "#0b0f10",
+                    "tertiary-dim": "#714600",
+                    "on-error": "#ffefee"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "display": ["Plus Jakarta Sans"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        h1, h2, h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .editorial-shadow {
+            box-shadow: 0px 12px 32px rgba(44, 47, 49, 0.06);
+        }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="flex items-center justify-between px-6 h-16 w-full fixed top-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl shadow-[0px_12px_32px_rgba(0,0,0,0.06)]">
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors active:scale-95 text-sky-700 dark:text-sky-400">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold tracking-tight text-on-surface text-lg">Legal</h1>
+</div>
+<div class="font-['Plus_Jakarta_Sans'] font-extrabold text-xl text-sky-800 dark:text-sky-300">Glicare</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-4xl mx-auto">
+<!-- Hero Section -->
+<div class="mb-16">
+<span class="text-primary font-bold tracking-widest text-xs uppercase mb-3 block">Transparência &amp; Segurança</span>
+<h2 class="text-4xl md:text-5xl font-extrabold text-on-surface tracking-tight leading-tight mb-6">Política de Privacidade</h2>
+<p class="text-on-surface-variant text-lg max-w-2xl leading-relaxed">Sua privacidade é o alicerce do Glicare. Esta política detalha como protegemos seus dados biométricos e pessoais enquanto você foca na sua saúde.</p>
+</div>
+<!-- Editorial Content Layout (Bento Style Sub-sections) -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Section: Coleta de Dados -->
+<section class="md:col-span-12 bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
+<div class="flex items-start gap-6">
+<div class="bg-primary-container/20 p-4 rounded-2xl">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="database">database</span>
+</div>
+<div class="flex-1">
+<h3 class="text-2xl font-bold mb-4">Coleta de Dados</h3>
+<p class="text-on-surface-variant leading-relaxed mb-4">Coletamos informações essenciais para o monitoramento glicêmico preciso, incluindo:</p>
+<ul class="space-y-3">
+<li class="flex items-center gap-3 text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                Dados de Identificação (Nome, CPF, Data de Nascimento)
+                            </li>
+<li class="flex items-center gap-3 text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                Informações Biométricas (Níveis de Glicose, Peso, Altura)
+                            </li>
+<li class="flex items-center gap-3 text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                Logs de Atividade Física e Dieta
+                            </li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Section: Uso das Informações -->
+<section class="md:col-span-7 bg-surface-container-low p-8 rounded-xl">
+<div class="bg-secondary-container/30 w-12 h-12 flex items-center justify-center rounded-xl mb-6">
+<span class="material-symbols-outlined text-secondary" data-icon="insights">insights</span>
+</div>
+<h3 class="text-2xl font-bold mb-4">Uso das Informações</h3>
+<p class="text-on-surface-variant leading-relaxed">
+                    Utilizamos seus dados para gerar gráficos de tendência, calcular o Tempo em Faixa (TIR) e fornecer alertas preventivos de hipo e hiperglicemia. O processamento é realizado sob rigorosos protocolos de criptografia para garantir que apenas você e seus profissionais autorizados acessem os relatórios.
+                </p>
+</section>
+<!-- Section: Segurança -->
+<section class="md:col-span-5 bg-primary/5 p-8 rounded-xl flex flex-col justify-between">
+<div>
+<h3 class="text-xl font-bold mb-3">Segurança</h3>
+<p class="text-sm text-on-surface-variant leading-loose">
+                        Implementamos criptografia de ponta a ponta (AES-256) e autenticação de dois fatores. Seus dados são armazenados em servidores de alta segurança com certificação HIPAA.
+                    </p>
+</div>
+<div class="mt-6 flex items-center gap-2 text-primary font-bold text-sm">
+<span class="material-symbols-outlined text-lg" data-icon="verified_user">verified_user</span>
+                    Certificação Azure Vital
+                </div>
+</section>
+<!-- Section: Compartilhamento (SUS Integration) -->
+<section class="md:col-span-12 bg-surface-container-highest p-8 rounded-xl border-l-4 border-secondary">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+<div class="max-w-xl">
+<h3 class="text-2xl font-bold mb-4">Compartilhamento de Dados</h3>
+<p class="text-on-surface-variant leading-relaxed">
+                            Respeitamos a interoperabilidade da saúde pública. Seus dados podem ser integrados à Rede Nacional de Dados em Saúde (RNDS) para facilitar seu atendimento no **Sistema Único de Saúde (SUS)**, garantindo que seu histórico clínico acompanhe você em qualquer unidade de atendimento.
+                        </p>
+</div>
+<div class="relative w-32 h-32 flex-shrink-0 bg-white rounded-full flex items-center justify-center shadow-inner">
+<img alt="Logo de integração" class="w-20 h-20 object-contain" data-alt="A clean, minimalist medical integration icon representing public health systems. The icon features a stylized blue and green weave pattern symbolizing connectivity and care, set against a pristine white background. The aesthetic is high-end editorial, matching a sophisticated health tech application interface. The lighting is soft and professional, emphasizing a sense of trust and official government partnership." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOe2KAB5vK4R_4insYQJVHH88TqWmwXt2XwHtsHMjGV1orTS1kuUeyuimQB-PhjZi0mgIezRTqskxXXTx-MnJG6Iks3zvA-nZ6dtu-yrOCVDkX2A9-kffeVXupF-c42mmr-Abu8TFrcdOS8Gn2lqGbMou11Kf7pv4a6sOaXbHusRFBXOMesmBrpdgdFmNiIIto34mkJVQe-pOsUK-XFDmHuzq9llKDIWdDLo_4kmRep8Xtth4311LghPsJjxYOKx3GyHIMucHo"/>
+</div>
+</div>
+</section>
+<!-- Section: Seus Direitos -->
+<section class="md:col-span-12 bg-white p-10 rounded-xl editorial-shadow mb-8">
+<h3 class="text-2xl font-bold mb-8 text-center">Seus Direitos (LGPD)</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="text-center">
+<span class="material-symbols-outlined text-tertiary mb-3 text-3xl" data-icon="edit_document">edit_document</span>
+<h4 class="font-bold mb-2">Acesso e Correção</h4>
+<p class="text-xs text-on-surface-variant">Você pode solicitar o relatório completo dos seus dados e corrigir qualquer imprecisão a qualquer momento.</p>
+</div>
+<div class="text-center">
+<span class="material-symbols-outlined text-tertiary mb-3 text-3xl" data-icon="delete_forever">delete_forever</span>
+<h4 class="font-bold mb-2">Exclusão Permanente</h4>
+<p class="text-xs text-on-surface-variant">O direito ao esquecimento permite que você remova permanentemente todos os seus dados de nossos servidores.</p>
+</div>
+<div class="text-center">
+<span class="material-symbols-outlined text-tertiary mb-3 text-3xl" data-icon="ios_share">ios_share</span>
+<h4 class="font-bold mb-2">Portabilidade</h4>
+<p class="text-xs text-on-surface-variant">Exporte seu histórico de saúde em formato JSON ou PDF para levar a outros prestadores de serviço.</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Last Updated -->
+<div class="mt-12 text-center text-on-surface-variant text-sm">
+            Última atualização: 24 de Maio de 2024
+        </div>
+</main>
+<!-- BottomNavBar (Hidden on desktop as per platform rules) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pt-3 pb-8 bg-white/90 dark:bg-slate-900/90 backdrop-blur-2xl shadow-[0px_-8px_24px_rgba(0,0,0,0.04)] rounded-t-[2rem] md:hidden">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-1 hover:text-sky-600" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-['Manrope'] text-[11px] font-semibold tracking-wide">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-1 hover:text-sky-600" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-['Manrope'] text-[11px] font-semibold tracking-wide">Insights</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-1 hover:text-sky-600" href="#">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span class="font-['Manrope'] text-[11px] font-semibold tracking-wide">Health</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-sky-100 dark:bg-sky-900/40 text-sky-800 dark:text-sky-200 rounded-full px-5 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-['Manrope'] text-[11px] font-semibold tracking-wide">Profile</span>
+</a>
+</nav>
+</body></html>

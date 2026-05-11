@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Glicare - Alertas Inteligentes</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-tint": "#005f9c",
+                        "on-primary": "#ecf3ff",
+                        "background": "#f5f7f9",
+                        "surface-bright": "#f5f7f9",
+                        "tertiary-dim": "#714600",
+                        "on-secondary-fixed-variant": "#00675f",
+                        "primary": "#005f9c",
+                        "secondary-container": "#78f7e9",
+                        "on-background": "#2c2f31",
+                        "secondary-dim": "#005a53",
+                        "on-primary-container": "#002e50",
+                        "outline-variant": "#abadaf",
+                        "surface-container-highest": "#d9dde0",
+                        "secondary": "#00675f",
+                        "on-primary-fixed-variant": "#00375e",
+                        "primary-fixed-dim": "#4ea3f1",
+                        "primary-container": "#5eb0ff",
+                        "on-surface": "#2c2f31",
+                        "tertiary-fixed-dim": "#e79400",
+                        "on-error": "#ffefee",
+                        "on-error-container": "#570008",
+                        "on-tertiary-container": "#4a2c00",
+                        "surface": "#f5f7f9",
+                        "error-container": "#fb5151",
+                        "on-secondary-fixed": "#004842",
+                        "inverse-primary": "#5eb0ff",
+                        "on-tertiary-fixed-variant": "#563400",
+                        "outline": "#747779",
+                        "on-secondary": "#bffff6",
+                        "surface-variant": "#d9dde0",
+                        "secondary-fixed-dim": "#69e8db",
+                        "secondary-fixed": "#78f7e9",
+                        "inverse-on-surface": "#9a9d9f",
+                        "surface-dim": "#d0d5d8",
+                        "error-dim": "#9f0519",
+                        "inverse-surface": "#0b0f10",
+                        "on-primary-fixed": "#001123",
+                        "on-surface-variant": "#595c5e",
+                        "on-tertiary": "#fff0e3",
+                        "primary-fixed": "#5eb0ff",
+                        "tertiary": "#815100",
+                        "on-secondary-container": "#005c55",
+                        "surface-container-low": "#eef1f3",
+                        "tertiary-container": "#f8a010",
+                        "surface-container": "#e5e9eb",
+                        "on-tertiary-fixed": "#2a1700",
+                        "error": "#b31b25",
+                        "tertiary-fixed": "#f8a010",
+                        "primary-dim": "#005389",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#dfe3e6"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-shift-bg {
+            background: linear-gradient(180deg, rgba(245, 247, 249, 0) 0%, rgba(245, 247, 249, 1) 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body text-on-background antialiased pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden ring-2 ring-primary-container">
+<img class="w-full h-full object-cover" data-alt="close-up portrait of a middle-aged man with kind eyes and short grey hair, soft studio lighting, high-end professional photography style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCQ31UEh9DhLqYfac9NQ3ns11Nq0qTcB-FP6HtbixOEfUgs7pOLme8Fhpr1c0GldTVZx-2G8szj7LnV-2v3UfQkVn8l5n-gyvTyNuWaIyT6pEgwSf2VzL4gcGIDuMUOwbx9kX9ZUy7i9pNA2IR1spXG-JsX8SfJGrRIUeduYrCoMKs4F53n4u7AqILeXIEc0XF529gUJkeHXiyTT_LB6tD03scbHTF_fQQ091GbmTP6Q2kk3yUOOgCEi4a6WtI0KYUxBWEvj9viHE"/>
+</div>
+<span class="font-['Plus_Jakarta_Sans'] font-bold text-lg tracking-tight text-blue-700 dark:text-blue-400">Glicare</span>
+</div>
+<button class="text-blue-700 dark:text-blue-400 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<main class="pt-24 px-6 max-w-2xl mx-auto">
+<!-- Title Section -->
+<div class="mb-10">
+<h1 class="font-headline font-extrabold text-3xl tracking-tight text-on-surface mb-2">Alertas Inteligentes</h1>
+<p class="text-on-surface-variant text-sm font-medium">Insights personalizados baseados no seu comportamento recente.</p>
+</div>
+<!-- Alerts Stack -->
+<div class="space-y-6">
+<!-- ALERT: High Glucose Risk (Tertiary/Orange) -->
+<div class="glass-card rounded-[2rem] p-6 shadow-[0px_12px_32px_rgba(44,47,49,0.06)] relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-tertiary-container/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>
+<div class="flex items-start gap-4 mb-4">
+<div class="bg-tertiary-container text-on-tertiary-container p-3 rounded-2xl">
+<span class="material-symbols-outlined" data-icon="warning" data-weight="fill" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg text-tertiary">Atenção: Risco de Hiperglicemia</h3>
+<p class="text-xs font-bold text-on-tertiary-fixed-variant/60 tracking-widest uppercase">Detectado há 15 min</p>
+</div>
+</div>
+<p class="text-on-surface-variant mb-6 leading-relaxed">
+                    Sua curva glicêmica apresenta uma tendência de alta após a última refeição (Almoço). A projeção indica que você pode ultrapassar <span class="font-bold text-tertiary">180 mg/dL</span> na próxima hora.
+                </p>
+<div class="bg-surface-container-low rounded-2xl p-4 space-y-3">
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">Recomendações Glicare</p>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary text-sm" data-icon="water_drop">water_drop</span>
+<span class="text-sm font-medium">Beba 300ml de água agora.</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary text-sm" data-icon="directions_walk">directions_walk</span>
+<span class="text-sm font-medium">Considere uma caminhada leve de 10 min.</span>
+</div>
+</div>
+<div class="mt-6 flex gap-3">
+<button class="flex-1 bg-tertiary text-on-tertiary py-3 rounded-full font-bold text-sm shadow-lg shadow-tertiary/20 active:scale-95 transition-all">Registrar Insulina</button>
+<button class="px-6 py-3 rounded-full border-2 border-outline-variant/20 text-on-surface-variant font-bold text-sm active:scale-95 transition-all">Ignorar</button>
+</div>
+</div>
+<!-- ALERT: Medication (Primary/Blue) -->
+<div class="glass-card rounded-[2rem] p-6 shadow-[0px_12px_32px_rgba(44,47,49,0.06)] relative overflow-hidden">
+<div class="flex items-start gap-4 mb-4">
+<div class="bg-primary-container text-on-primary-container p-3 rounded-2xl">
+<span class="material-symbols-outlined" data-icon="medication" data-weight="fill" style="font-variation-settings: 'FILL' 1;">medication</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg text-primary">Lembrete: Hora da Medicação</h3>
+<p class="text-xs font-bold text-on-primary-fixed-variant/60 tracking-widest uppercase">Programado para 18:00</p>
+</div>
+</div>
+<p class="text-on-surface-variant mb-6 leading-relaxed">
+                    Está na hora da sua dose de <span class="font-bold text-primary">Metformina (850mg)</span>. Manter a regularidade é essencial para o controle da sua hemoglobina glicada.
+                </p>
+<div class="flex items-center gap-4 bg-primary/5 p-4 rounded-2xl mb-6">
+<div class="flex-1">
+<p class="text-xs text-on-surface-variant font-semibold">Última dose registrada</p>
+<p class="font-bold text-primary">Ontem, 18:05</p>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant/30"></div>
+<div class="flex-1">
+<p class="text-xs text-on-surface-variant font-semibold">Estoque</p>
+<p class="font-bold text-primary">12 dias restantes</p>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary py-4 rounded-full font-bold text-sm shadow-lg shadow-primary/20 active:scale-95 transition-all">Confirmar Ingestão</button>
+</div>
+<!-- ALERT: Goal Achieved (Secondary/Green) -->
+<div class="glass-card rounded-[2rem] p-6 shadow-[0px_12px_32px_rgba(44,47,49,0.06)] relative overflow-hidden border-2 border-secondary/10">
+<div class="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent pointer-events-none"></div>
+<div class="flex items-start gap-4 mb-4">
+<div class="bg-secondary-container text-on-secondary-container p-3 rounded-2xl">
+<span class="material-symbols-outlined" data-icon="workspace_premium" data-weight="fill" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg text-secondary">Parabéns! Meta Diária Atingida!</h3>
+<p class="text-xs font-bold text-on-secondary-fixed-variant/60 tracking-widest uppercase">Conquista de hoje</p>
+</div>
+</div>
+<p class="text-on-surface-variant mb-6 leading-relaxed">
+                    Você manteve seus níveis dentro do alvo por <span class="font-bold text-secondary">92% do dia</span>. Sua disciplina hoje foi exemplar para sua saúde a longo prazo.
+                </p>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-high rounded-3xl p-4 text-center">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase mb-1">Tempo no Alvo</p>
+<p class="text-2xl font-headline font-black text-secondary tracking-tighter">22h 05m</p>
+</div>
+<div class="bg-surface-container-high rounded-3xl p-4 text-center">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase mb-1">Variabilidade</p>
+<p class="text-2xl font-headline font-black text-secondary tracking-tighter">Baixa</p>
+</div>
+</div>
+<div class="mt-6 flex justify-center">
+<button class="flex items-center gap-2 text-secondary font-bold text-sm hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-base" data-icon="share">share</span>
+                        Compartilhar Progresso
+                    </button>
+</div>
+</div>
+</div>
+<!-- Footer Insight -->
+<div class="mt-12 mb-8 text-center p-6 border-2 border-dashed border-outline-variant/30 rounded-[2rem]">
+<span class="material-symbols-outlined text-outline-variant mb-2 block" data-icon="query_stats">query_stats</span>
+<p class="text-sm text-on-surface-variant font-medium max-w-[240px] mx-auto leading-relaxed">
+                Nossos algoritmos analisam mais de <span class="text-primary font-bold">50 pontos de dados</span> diários para gerar esses alertas.
+            </p>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white dark:bg-slate-950 rounded-t-[2rem] z-50 shadow-[0px_-12px_32px_rgba(0,0,0,0.06)]">
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1.5 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span class="font-['Manrope'] text-[10px] font-semibold uppercase tracking-wider">Início</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1.5 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined mb-1" data-icon="insights">insights</span>
+<span class="font-['Manrope'] text-[10px] font-semibold uppercase tracking-wider">Gráficos</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-2xl px-3 py-3 -mt-8 shadow-lg active:scale-90 transition-all duration-200 border-4 border-background">
+<span class="material-symbols-outlined scale-125" data-icon="add">add</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-2xl px-3 py-1.5 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined mb-1" data-icon="notifications" style="font-variation-settings: 'FILL' 1;">notifications</span>
+<span class="font-['Manrope'] text-[10px] font-semibold uppercase tracking-wider">Alertas</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1.5 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="font-['Manrope'] text-[10px] font-semibold uppercase tracking-wider">Perfil</span>
+</div>
+</nav>
+</body></html>

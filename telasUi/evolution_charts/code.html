@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Glicare - Gráfico de Evolução</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-tint": "#005f9c",
+                        "on-primary": "#ecf3ff",
+                        "background": "#f5f7f9",
+                        "surface-bright": "#f5f7f9",
+                        "tertiary-dim": "#714600",
+                        "on-secondary-fixed-variant": "#00675f",
+                        "primary": "#005f9c",
+                        "secondary-container": "#78f7e9",
+                        "on-background": "#2c2f31",
+                        "secondary-dim": "#005a53",
+                        "on-primary-container": "#002e50",
+                        "outline-variant": "#abadaf",
+                        "surface-container-highest": "#d9dde0",
+                        "secondary": "#00675f",
+                        "on-primary-fixed-variant": "#00375e",
+                        "primary-fixed-dim": "#4ea3f1",
+                        "primary-container": "#5eb0ff",
+                        "on-surface": "#2c2f31",
+                        "tertiary-fixed-dim": "#e79400",
+                        "on-error": "#ffefee",
+                        "on-error-container": "#570008",
+                        "on-tertiary-container": "#4a2c00",
+                        "surface": "#f5f7f9",
+                        "error-container": "#fb5151",
+                        "on-secondary-fixed": "#004842",
+                        "inverse-primary": "#5eb0ff",
+                        "on-tertiary-fixed-variant": "#563400",
+                        "outline": "#747779",
+                        "on-secondary": "#bffff6",
+                        "surface-variant": "#d9dde0",
+                        "secondary-fixed-dim": "#69e8db",
+                        "secondary-fixed": "#78f7e9",
+                        "inverse-on-surface": "#9a9d9f",
+                        "surface-dim": "#d0d5d8",
+                        "error-dim": "#9f0519",
+                        "inverse-surface": "#0b0f10",
+                        "on-primary-fixed": "#001123",
+                        "on-surface-variant": "#595c5e",
+                        "on-tertiary": "#fff0e3",
+                        "primary-fixed": "#5eb0ff",
+                        "tertiary": "#815100",
+                        "on-secondary-container": "#005c55",
+                        "surface-container-low": "#eef1f3",
+                        "tertiary-container": "#f8a010",
+                        "surface-container": "#e5e9eb",
+                        "on-tertiary-fixed": "#2a1700",
+                        "error": "#b31b25",
+                        "tertiary-fixed": "#f8a010",
+                        "primary-dim": "#005389",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#dfe3e6"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .chart-gradient {
+            background: linear-gradient(180deg, rgba(0, 95, 156, 0.1) 0%, rgba(0, 95, 156, 0) 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body text-on-background min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="professional portrait of a middle-aged man with a friendly expression, soft natural lighting, clean blurred background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuUl6-W3dm0X6vWS-hYTWv6m3rOSBqMUvvWVU7gOdwT9_qZuBgp8gx45Jp_sYj8G-fzlvg-g4aAsT-2ebk88Hu-QmToZkpzHWvYLjOnQStUCGXAH280QHXNB_6bUbXA46DfyPsiV59lQ4E9VFZihCaGsth16yxwpS5994uVOgnSr7vHWjP7QLHb36huOJ7DO5Bs1V8O7B95MuwtHPl03QNXLXz2Y1Vqs_xo5TgTAEYZ6JqkwvAvsEtbn32HgrEU70E6JwMHDbLS1k"/>
+</div>
+<span class="text-2xl font-black text-blue-700 dark:text-blue-400 tracking-tighter font-headline">Glicare</span>
+</div>
+<button class="text-blue-700 dark:text-blue-400 hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-2xl" data-icon="notifications">notifications</span>
+</button>
+</header>
+<main class="pt-24 px-6 space-y-10">
+<!-- Title & Page Header -->
+<section>
+<h1 class="font-headline font-extrabold text-3xl tracking-tight text-on-surface">Gráfico de Evolução</h1>
+<p class="text-on-surface-variant mt-2 text-sm">Acompanhe seu progresso nos últimos períodos.</p>
+</section>
+<!-- Time Filters -->
+<div class="flex gap-2 p-1.5 bg-surface-container-low rounded-full w-fit">
+<button class="px-6 py-2 rounded-full text-sm font-bold transition-all text-on-surface-variant hover:text-primary">7 dias</button>
+<button class="px-6 py-2 rounded-full text-sm font-bold transition-all bg-primary text-white shadow-lg">30 dias</button>
+<button class="px-6 py-2 rounded-full text-sm font-bold transition-all text-on-surface-variant hover:text-primary">90 dias</button>
+</div>
+<!-- Main Insights Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Average Reading Card -->
+<div class="md:col-span-4 bg-surface-container-lowest rounded-[2rem] p-8 shadow-[0px_12px_32px_rgba(44,47,49,0.06)] relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-110"></div>
+<p class="text-on-surface-variant font-semibold text-sm uppercase tracking-wider mb-4">Média do Período</p>
+<div class="flex items-baseline gap-2">
+<span class="font-headline font-black text-5xl text-primary">118</span>
+<span class="text-on-surface-variant font-bold text-lg">mg/dL</span>
+</div>
+<div class="mt-6 flex items-center gap-2 px-3 py-1.5 bg-secondary-container/30 text-on-secondary-container w-fit rounded-full">
+<span class="material-symbols-outlined text-sm font-bold" data-icon="trending_down">trending_down</span>
+<span class="text-xs font-black uppercase tracking-widest">-8% melhoria</span>
+</div>
+</div>
+<!-- Main Evolution Chart Area -->
+<div class="md:col-span-8 bg-surface-container-lowest rounded-[2rem] p-8 shadow-[0px_12px_32px_rgba(44,47,49,0.06)] flex flex-col h-[400px]">
+<div class="flex justify-between items-center mb-8">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Glicemia</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-surface-container-high"></span>
+<span class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Meta</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="more_horiz">more_horiz</span>
+</div>
+<!-- Abstract Visual Chart Representation -->
+<div class="flex-1 w-full relative">
+<!-- Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between py-2 border-b border-surface-container">
+<div class="border-t border-dashed border-surface-container-highest w-full h-px"></div>
+<div class="border-t border-dashed border-surface-container-highest w-full h-px"></div>
+<div class="border-t border-dashed border-primary/20 w-full h-px relative">
+<span class="absolute -top-3 right-0 bg-surface-container-lowest px-2 text-[10px] font-black text-primary uppercase tracking-tighter">Meta: 100</span>
+</div>
+<div class="border-t border-dashed border-surface-container-highest w-full h-px"></div>
+</div>
+<!-- SVG Chart Path -->
+<svg class="absolute inset-0 w-full h-full drop-shadow-xl" preserveaspectratio="none" viewbox="0 0 400 200">
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#005f9c" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#005f9c" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,160 Q50,140 80,150 T160,110 T240,130 T320,90 T400,105 L400,200 L0,200 Z" fill="url(#chartGradient)"></path>
+<path d="M0,160 Q50,140 80,150 T160,110 T240,130 T320,90 T400,105" fill="none" stroke="#005f9c" stroke-linecap="round" stroke-width="4"></path>
+<!-- Data Points -->
+<circle cx="80" cy="150" fill="#ffffff" r="5" stroke="#005f9c" stroke-width="2"></circle>
+<circle cx="160" cy="110" fill="#ffffff" r="5" stroke="#005f9c" stroke-width="2"></circle>
+<circle cx="240" cy="130" fill="#ffffff" r="5" stroke="#005f9c" stroke-width="2"></circle>
+<circle cx="320" cy="90" fill="#ffffff" r="5" stroke="#005f9c" stroke-width="2"></circle>
+<circle cx="400" cy="105" fill="#005f9c" r="5"></circle>
+</svg>
+<!-- X-Axis Labels -->
+<div class="absolute bottom-0 left-0 right-0 flex justify-between text-[10px] font-black text-on-surface-variant uppercase tracking-widest pt-4">
+<span>01 Out</span>
+<span>08 Out</span>
+<span>15 Out</span>
+<span>22 Out</span>
+<span>Hoje</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Tendência Geral Section -->
+<section class="space-y-6 pb-12">
+<h2 class="font-headline font-bold text-xl text-on-surface">Tendência Geral</h2>
+<div class="bg-surface-container-lowest rounded-[2rem] p-6 shadow-[0px_12px_32px_rgba(44,47,49,0.06)] flex items-center gap-6">
+<div class="w-16 h-16 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-3xl" data-icon="auto_graph">auto_graph</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-1">
+<span class="text-sm font-black uppercase tracking-widest text-secondary">Melhorando</span>
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+</div>
+<p class="text-on-surface-variant font-medium leading-relaxed">Suas glicemias estão mais estáveis! A variabilidade diminuiu 12% em relação ao mês anterior.</p>
+</div>
+<button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<!-- Health Impact Chips -->
+<div class="flex flex-wrap gap-3 mt-4">
+<div class="px-4 py-2 rounded-full bg-secondary-container text-on-secondary-container flex items-center gap-2 text-xs font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span> Estável
+                </div>
+<div class="px-4 py-2 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center gap-2 text-xs font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm" data-icon="warning">warning</span> Atenção ao Sono
+                </div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white dark:bg-slate-950 rounded-t-[2rem] z-50 shadow-[0px_-12px_32px_rgba(0,0,0,0.06)]">
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1.5 active:scale-90 transition-all duration-200 hover:text-blue-500">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-['Manrope'] text-[10px] font-semibold uppercase tracking-wider mt-1">Início</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-2xl px-3 py-1.5 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="insights" style="font-variation-settings: 'FILL' 1;">insights</span>
+<span class="font-['Manrope'] text-[10px] font-semibold uppercase tracking-wider mt-1">Gráficos</span>
+</div>
+<div class="relative -top-6">
+<button class="w-14 h-14 bg-primary text-white rounded-full flex items-center justify-center shadow-lg shadow-primary/40 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-3xl" data-icon="add">add</span>
+</button>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1.5 active:scale-90 transition-all duration-200 hover:text-blue-500">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="font-['Manrope'] text-[10px] font-semibold uppercase tracking-wider mt-1">Alertas</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1.5 active:scale-90 transition-all duration-200 hover:text-blue-500">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Manrope'] text-[10px] font-semibold uppercase tracking-wider mt-1">Perfil</span>
+</div>
+</nav>
+</body></html>

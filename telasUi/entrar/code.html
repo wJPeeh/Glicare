@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#0b0f10",
+                        "tertiary-dim": "#714600",
+                        "primary-dim": "#005389",
+                        "inverse-on-surface": "#9a9d9f",
+                        "surface-container-low": "#eef1f3",
+                        "background": "#f5f7f9",
+                        "primary-container": "#5eb0ff",
+                        "on-primary": "#ecf3ff",
+                        "on-secondary": "#bffff6",
+                        "secondary-container": "#78f7e9",
+                        "outline-variant": "#abadaf",
+                        "on-surface": "#2c2f31",
+                        "on-primary-fixed-variant": "#00375e",
+                        "secondary-fixed-dim": "#69e8db",
+                        "on-surface-variant": "#595c5e",
+                        "secondary-fixed": "#78f7e9",
+                        "surface-variant": "#d9dde0",
+                        "on-tertiary-fixed-variant": "#563400",
+                        "surface-container-high": "#dfe3e6",
+                        "on-secondary-fixed": "#004842",
+                        "inverse-primary": "#5eb0ff",
+                        "on-tertiary": "#fff0e3",
+                        "error": "#b31b25",
+                        "tertiary": "#815100",
+                        "on-primary-fixed": "#001123",
+                        "surface": "#f5f7f9",
+                        "primary-fixed": "#5eb0ff",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-secondary-container": "#005c55",
+                        "error-container": "#fb5151",
+                        "tertiary-fixed": "#f8a010",
+                        "on-error-container": "#570008",
+                        "surface-dim": "#d0d5d8",
+                        "on-error": "#ffefee",
+                        "on-secondary-fixed-variant": "#00675f",
+                        "on-tertiary-container": "#4a2c00",
+                        "secondary": "#00675f",
+                        "tertiary-fixed-dim": "#e79400",
+                        "on-primary-container": "#002e50",
+                        "primary": "#005f9c",
+                        "surface-bright": "#f5f7f9",
+                        "surface-container-highest": "#d9dde0",
+                        "surface-container-lowest": "#ffffff",
+                        "error-dim": "#9f0519",
+                        "surface-container": "#e5e9eb",
+                        "surface-tint": "#005f9c",
+                        "primary-fixed-dim": "#4ea3f1",
+                        "outline": "#747779",
+                        "tertiary-container": "#f8a010",
+                        "secondary-dim": "#005a53",
+                        "on-background": "#2c2f31"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "display": ["Plus Jakarta Sans"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: radial-gradient(circle at 100% 0%, #ecf3ff 0%, #f5f7f9 50%);
+        }
+        .headline-font { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col">
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl flex items-center justify-between px-6 h-16 w-full">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sky-700 dark:text-sky-400">arrow_back</span>
+</div>
+<h1 class="text-2xl font-black tracking-tighter text-sky-800 dark:text-sky-300 font-['Plus_Jakarta_Sans']">Glicare</h1>
+<div class="w-6"></div>
+</header>
+<main class="flex-grow flex items-center justify-center px-6 pt-24 pb-12">
+<div class="w-full max-w-md space-y-10">
+<section class="text-center space-y-3">
+<div class="inline-flex items-center justify-center p-4 bg-primary-container/20 rounded-3xl mb-4">
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">health_metrics</span>
+</div>
+<h2 class="text-4xl font-extrabold tracking-tight text-on-surface headline-font">Bem-vindo</h2>
+<p class="text-on-surface-variant font-medium">Acesse sua conta para monitorar sua saúde com precisão.</p>
+</section>
+<form class="space-y-6">
+<div class="space-y-5">
+<div class="space-y-2">
+<label class="text-sm font-bold text-on-surface-variant ml-1" for="email">E-mail</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">mail</span>
+<input class="w-full pl-12 pr-4 py-4 bg-surface-container-lowest border border-outline-variant/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-on-surface placeholder:text-outline/60" id="email" placeholder="nome@exemplo.com" type="email"/>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<label class="text-sm font-bold text-on-surface-variant ml-1" for="password">Senha</label>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">lock</span>
+<input class="w-full pl-12 pr-4 py-4 bg-surface-container-lowest border border-outline-variant/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-on-surface placeholder:text-outline/60" id="password" placeholder="••••••••" type="password"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline cursor-pointer">visibility</span>
+</div>
+<div class="flex justify-end pt-1">
+<a class="text-sm font-bold text-primary hover:text-primary-dim transition-colors" href="#">Esqueci minha senha</a>
+</div>
+</div>
+</div>
+<button class="w-full py-4 bg-gradient-to-r from-primary to-primary-dim text-on-primary font-bold rounded-full shadow-lg shadow-primary/20 active:scale-[0.98] transition-all text-lg" type="submit">
+                    Entrar
+                </button>
+</form>
+<div class="space-y-8">
+<div class="relative flex items-center">
+<div class="flex-grow border-t border-outline-variant/20"></div>
+<span class="flex-shrink mx-4 text-xs font-bold text-outline-variant uppercase tracking-widest">Ou acesse com</span>
+<div class="flex-grow border-t border-outline-variant/20"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-3 py-3 px-4 bg-surface-container-lowest border border-outline-variant/20 rounded-xl hover:bg-surface-container-low transition-colors active:scale-95">
+<img alt="" class="w-5 h-5" data-alt="A clean, high-resolution logo of the Google 'G' icon centered on a crisp white background. The lighting is even and studio-quality, emphasizing the brand's primary colors of red, yellow, green, and blue. The overall style is minimalist and corporate, reflecting a modern tech ecosystem." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBW9W4cd-pU_ZRrqh3psvh5WfkGmDb8nUfJCkOgV61CyJsiK_XUBF-XNzyL-Eg2AyXec7FBKshHbeOLyFLAYHFsZbn4975il4Ea_Zf6y1PchMdN9FJcjQWeR3BOLR1BHXX264CaAJTeuWH0HKz7wpLbfzWOq3qNqLeu7TEnP47mqM91FiUFdXfrGuOb3p7QFIWNFxii3LTu3SEczw4yjTt2Q7oK-azzx4lL1RXsunZzl9n9XdxGcUDuJdmxi_bg2FM4yhVtIQMd"/>
+<span class="text-sm font-bold text-on-surface">Google</span>
+</button>
+<button class="flex items-center justify-center gap-3 py-3 px-4 bg-surface-container-lowest border border-outline-variant/20 rounded-xl hover:bg-surface-container-low transition-colors active:scale-95">
+<span class="material-symbols-outlined text-blue-600">social_leaderboard</span>
+<span class="text-sm font-bold text-on-surface">Facebook</span>
+</button>
+</div>
+<button class="w-full flex items-center justify-center gap-3 py-4 bg-secondary text-on-secondary font-bold rounded-xl hover:opacity-90 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+                    Acessar via SUS (Gov.br)
+                </button>
+</div>
+<p class="text-center text-sm font-medium text-on-surface-variant">
+                Não possui conta? <a class="text-primary font-bold" href="#">Crie uma agora</a>
+</p>
+</div>
+</main>
+<footer class="mt-auto pb-12 px-6">
+<div class="max-w-md mx-auto relative group">
+<div class="absolute -inset-1 bg-gradient-to-r from-secondary-container to-primary-container rounded-3xl blur opacity-10 group-hover:opacity-20 transition duration-1000 group-hover:duration-200"></div>
+<div class="relative bg-surface-container-lowest border border-outline-variant/10 p-6 rounded-3xl flex items-center gap-5">
+<div class="w-16 h-16 rounded-2xl overflow-hidden flex-shrink-0">
+<img alt="" class="w-full h-full object-cover" data-alt="A professional medical professional in a clean white lab coat, holding a modern tablet displaying medical data. The setting is a bright, high-end medical facility with soft blue and teal ambient lighting. The atmosphere is calm, authoritative, and technologically advanced, echoing a premium sanctuary for health data." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0MocwoCjBQpHagtm_A9cV-ew5JaMVwBPhYxO_5JxKaEPsyce_BgpXLyhz14KNPdb3SvQl-Fmpotpg6rGPKAXb1oaorb8ZasFIwJdfaqtX0TQ1xyd-kqxbs-wREpkwtzRlqFZSBkIleF47sligkPDLZp7LEM2AX1p5d4DI1NqVXFPYjycx0jVzmJYa0g1bNCo1TVTS1BXHK3N6QLqXVhqXcbD5eHzuoSClkysCfcgCfE5fVvEIiBAkTipNCLu3tlL0GPLdJphG"/>
+</div>
+<div>
+<h4 class="text-sm font-extrabold text-on-surface headline-font">Privacidade Glicare</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">Seus dados de saúde são criptografados e protegidos com os mais altos padrões de segurança biológica.</p>
+</div>
+</div>
+</div>
+</footer>
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl z-50 rounded-t-3xl shadow-[0_-4px_24px_rgba(0,0,0,0.04)] md:hidden">
+<div class="flex flex-col items-center justify-center bg-sky-100 dark:bg-sky-900/40 text-sky-800 dark:text-sky-100 rounded-full px-6 py-2">
+<span class="material-symbols-outlined" data-icon="login" style="font-variation-settings: 'FILL' 1;">login</span>
+<span class="font-['Manrope'] text-xs font-semibold">Login</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-6 py-2">
+<span class="material-symbols-outlined" data-icon="person_add">person_add</span>
+<span class="font-['Manrope'] text-xs font-semibold">Sign Up</span>
+</div>
+</nav>
+</body></html>

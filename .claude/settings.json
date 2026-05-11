@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell($flutter = \"C:\\\\Users\\\\User\\\\Desktop\\\\Nova pasta\\\\flutter\\\\bin\\\\flutter.bat\"; & $flutter emulators --launch Pixel_8)",
+      "Bash('/c/Users/User/Desktop/Nova pasta/flutter/bin/flutter.bat' devices)",
+      "Bash('/c/Users/User/Desktop/Nova pasta/flutter/bin/flutter.bat' run -d emulator-5554)",
+      "Bash(echo \"PID=$!\")",
+      "PowerShell($flutter = \"C:\\\\Users\\\\User\\\\Desktop\\\\Nova pasta\\\\flutter\\\\bin\\\\flutter.bat\"; & $flutter pub add flutter_riverpod go_router intl)",
+      "PowerShell($flutter = \"C:\\\\Users\\\\User\\\\Desktop\\\\Nova pasta\\\\flutter\\\\bin\\\\flutter.bat\"; Write-Output \"=== ANALYZE ===\"; & $flutter analyze --no-pub; Write-Output \"\"; Write-Output \"=== TEST ===\"; & $flutter test)",
+      "PowerShell($flutter = \"C:\\\\Users\\\\User\\\\Desktop\\\\Nova pasta\\\\flutter\\\\bin\\\\flutter.bat\"; & $flutter pub add google_fonts)",
+      "PowerShell($flutter = \"C:\\\\Users\\\\User\\\\Desktop\\\\Nova pasta\\\\flutter\\\\bin\\\\flutter.bat\"; & $flutter analyze --no-pub)",
+      "PowerShell($flutter = \"C:\\\\Users\\\\User\\\\Desktop\\\\Nova pasta\\\\flutter\\\\bin\\\\flutter.bat\"; & $flutter devices 2>&1 | Select-Object -Last 10)",
+      "PowerShell(Write-Output \"=== Node.js ===\"; \\(Get-Command node -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source\\) -or \"NOT FOUND\"; node --version 2>$null; Write-Output \"\"; Write-Output \"=== npm ===\"; npm --version 2>$null; Write-Output \"\"; Write-Output \"=== Firebase CLI ===\"; firebase --version 2>$null; if \\($LASTEXITCODE -ne 0\\) { Write-Output \"NOT INSTALLED\" }; Write-Output \"\"; Write-Output \"=== FlutterFire CLI ===\"; flutterfire --version 2>$null; if \\($LASTEXITCODE -ne 0\\) { Write-Output \"NOT INSTALLED\" }; Write-Output \"\"; Write-Output \"=== Dart pub global ===\"; $dart = \"C:\\\\Users\\\\User\\\\Desktop\\\\Nova pasta\\\\flutter\\\\bin\\\\dart.bat\"; & $dart pub global list 2>$null)",
+      "Bash(flutter pub *)",
+      "PowerShell(flutter pub get 2>&1)",
+      "PowerShell($paths = @\\(\"C:\\\\flutter\\\\bin\\\\flutter.bat\", \"C:\\\\src\\\\flutter\\\\bin\\\\flutter.bat\", \"$env:LOCALAPPDATA\\\\flutter\\\\bin\\\\flutter.bat\", \"C:\\\\dev\\\\flutter\\\\bin\\\\flutter.bat\", \"$env:USERPROFILE\\\\flutter\\\\bin\\\\flutter.bat\", \"C:\\\\Users\\\\User\\\\fvm\\\\flutter_sdk\\\\bin\\\\flutter.bat\", \"C:\\\\Users\\\\User\\\\Documents\\\\flutter\\\\bin\\\\flutter.bat\"\\); foreach \\($p in $paths\\) { if \\(Test-Path $p\\) { Write-Output \"FOUND: $p\" } }; $local = Get-Content \"android\\\\local.properties\" -ErrorAction SilentlyContinue | Where-Object { $_ -match \"flutter.sdk\" }; Write-Output \"local.properties: $local\")",
+      "PowerShell(& \"C:\\\\Users\\\\User\\\\Desktop\\\\Nova pasta\\\\flutter\\\\bin\\\\flutter.bat\" pub get 2>&1)",
+      "Read(//c/Users/User/AppData/Local/Pub/Cache/hosted/pub.dev/riverpod-3.2.1/lib/src/providers/**)",
+      "Read(//c/Users/User/AppData/Local/Pub/Cache/hosted/pub.dev/riverpod-3.2.1/**)",
+      "Bash(flutter devices *)",
+      "Bash(adb devices *)",
+      "PowerShell(adb devices -l)",
+      "PowerShell($adb = \"$env:LOCALAPPDATA\\\\Android\\\\Sdk\\\\platform-tools\\\\adb.exe\"; if \\(Test-Path $adb\\) { & $adb devices -l } else { Write-Output \"ADB nao encontrado em: $adb\" })",
+      "PowerShell($adb = \"$env:LOCALAPPDATA\\\\Android\\\\Sdk\\\\platform-tools\\\\adb.exe\"; & $adb kill-server; & $adb start-server; & $adb devices -l)",
+      "PowerShell(Get-PnpDevice | Where-Object { $_.FriendlyName -match \"LG|Android|ADB|K51\" -or $_.Manufacturer -match \"LG|Google\" } | Select-Object Status, Class, FriendlyName, Manufacturer | Format-Table -AutoSize)",
+      "PowerShell(Get-PnpDevice | Where-Object { $_.Status -eq \"Error\" -or $_.Status -eq \"Unknown\" -or $_.Problem -ne 0 } | Select-Object Status, Class, FriendlyName, Problem | Format-Table -AutoSize)",
+      "Bash(git init *)",
+      "Bash(git branch *)",
+      "Bash(git -C \"c:/Users/User/Documents/Projetos/GlicareFlutter\" config user.name)",
+      "Bash(git -C \"c:/Users/User/Documents/Projetos/GlicareFlutter\" config user.email)",
+      "Bash(git -C \"c:/Users/User/Documents/Projetos/GlicareFlutter\" add .)",
+      "Bash(git -C \"c:/Users/User/Documents/Projetos/GlicareFlutter\" status --short)"
+    ]
+  }
+}

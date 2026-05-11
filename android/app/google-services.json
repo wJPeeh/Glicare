@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "866874537681",
+    "firebase_url": "https://glicare-39078-default-rtdb.firebaseio.com",
+    "project_id": "glicare-39078",
+    "storage_bucket": "glicare-39078.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:866874537681:android:8ea2f11390b3364ab9f7f0",
+        "android_client_info": {
+          "package_name": "br.com.glicare.glicare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "866874537681-hr0rvb9o6o741a6su6oojkrgrfmjkeea.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.glicare.glicare",
+            "certificate_hash": "7c662a816d3238fcc9c07331b7c65acbdcc33b4d"
+          }
+        },
+        {
+          "client_id": "866874537681-e9jmheb39ne9u9h0ej1p8v26qqe00t2d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtH4Ww5gGCvlOhDQd4jncy-6Upv9gWTYw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "866874537681-e9jmheb39ne9u9h0ej1p8v26qqe00t2d.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "866874537681-87tvuo0fsk9pksu7a8bl5kgv0i1fkl6t.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "br.com.glicare.glicare"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
