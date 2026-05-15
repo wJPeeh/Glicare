@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../core/router/app_router.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/widgets/glicare_app_bar.dart';
 import '../../../core/widgets/gradient_button.dart';
@@ -18,7 +20,14 @@ class _MedicationRegisterPageState extends State<MedicationRegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GlicareAppBar(title: 'Registrar Medicação'),
+      appBar: GlicareAppBar(
+        title: 'Registrar Medicação',
+        action: IconButton(
+          tooltip: 'Histórico',
+          onPressed: () => context.push(AppRoutes.medicationHistory),
+          icon: const Icon(Icons.history, color: AppColors.primary),
+        ),
+      ),
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(24, 8, 24, 16),
@@ -80,7 +89,7 @@ class _MedicationRegisterPageState extends State<MedicationRegisterPage> {
               childAspectRatio: 1.4,
               children: [
                 _MedCard(icon: Icons.medication, name: 'Metformina', sub: '500mg • Comprimido', tint: AppColors.primary),
-                _MedCard(icon: Icons.vaccines, name: 'Insulina NPH', sub: '10 UI • Injeção', tint: AppColors.secondary),
+                _MedCard(icon: Icons.medication_outlined, name: 'Glifage XR', sub: '500mg • Comprimido', tint: AppColors.secondary),
                 _MedCard(icon: Icons.medication_liquid, name: 'Xarope Vit.', sub: '5ml • Líquido', tint: AppColors.tertiaryFixedDim),
               ],
             ),

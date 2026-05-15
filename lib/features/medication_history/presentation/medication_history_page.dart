@@ -95,8 +95,8 @@ class MedicationHistoryPage extends StatelessWidget {
                 statusBg: AppColors.tertiaryContainer.withValues(alpha: 0.2),
                 statusLabel: 'PENDENTE • 13:00',
                 badge: _StatusBadge('PENDENTE', AppColors.tertiary, AppColors.tertiaryContainer.withValues(alpha: 0.2)),
-                title: 'Insulina Basal',
-                sub: '12 Unidades • Subcutânea',
+                title: 'Glifage XR',
+                sub: '500mg • Comprimido',
                 actions: [
                   Expanded(
                     child: FilledButton(

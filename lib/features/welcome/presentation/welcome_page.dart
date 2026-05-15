@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -7,12 +8,19 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/widgets/glass_button.dart';
 import '../../../core/widgets/glicare_logo.dart';
 import '../../../core/widgets/gradient_button.dart';
+import '../../auth/presentation/auth_providers.dart';
 
-class WelcomePage extends StatelessWidget {
+class WelcomePage extends ConsumerWidget {
   const WelcomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.watch(currentUserProvider);
+    final firstName = _firstNameFor(user?.displayName, user?.email);
+    final greeting = firstName == null
+        ? 'Bem-vindo(a)!'
+        : 'Bem-vinda, $firstName!';
+
     return Scaffold(
       backgroundColor: AppColors.primary,
       body: Stack(
@@ -75,7 +83,7 @@ class WelcomePage extends StatelessWidget {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          'Bem-vinda, Lilian!',
+                          greeting,
                           style: GoogleFonts.plusJakartaSans(
                             fontSize: 30,
                             fontWeight: FontWeight.w800,
@@ -219,6 +227,20 @@ class WelcomePage extends StatelessWidget {
       ),
     );
   }
+}
+
+String? _firstNameFor(String? displayName, String? email) {
+  final trimmed = displayName?.trim();
+  if (trimmed != null && trimmed.isNotEmpty) {
+    final first = trimmed.split(' ').first;
+    return first.isEmpty ? null : first;
+  }
+  if (email != null && email.contains('@')) {
+    final handle = email.split('@').first.trim();
+    if (handle.isEmpty) return null;
+    return handle[0].toUpperCase() + handle.substring(1);
+  }
+  return null;
 }
 
 class _AmbientGlow extends StatelessWidget {

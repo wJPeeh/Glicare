@@ -29,7 +29,22 @@
       "Bash(git -C \"c:/Users/User/Documents/Projetos/GlicareFlutter\" config user.name)",
       "Bash(git -C \"c:/Users/User/Documents/Projetos/GlicareFlutter\" config user.email)",
       "Bash(git -C \"c:/Users/User/Documents/Projetos/GlicareFlutter\" add .)",
-      "Bash(git -C \"c:/Users/User/Documents/Projetos/GlicareFlutter\" status --short)"
+      "Bash(git -C \"c:/Users/User/Documents/Projetos/GlicareFlutter\" status --short)",
+      "Bash(git -C \"c:/Users/User/Documents/Projetos/GlicareFlutter\" rm --cached \".claude/settings.local.json\")",
+      "Bash(git -C \"c:/Users/User/Documents/Projetos/GlicareFlutter\" add .gitignore)",
+      "Bash(git -C \"c:/Users/User/Documents/Projetos/GlicareFlutter\" ls-files --cached)",
+      "Bash(grep -E \"\\\\.\\(env|log|jks|keystore|key\\)$|serviceAccount|adminsdk\")",
+      "Bash(git -C c:/Users/User/Documents/Projetos/GlicareFlutter commit -m ' *)",
+      "Bash(git -C \"c:/Users/User/Documents/Projetos/GlicareFlutter\" remote add origin https://github.com/wJPeeh/Glicare.git)",
+      "Bash(git -C \"c:/Users/User/Documents/Projetos/GlicareFlutter\" remote -v)",
+      "Bash(git -C \"c:/Users/User/Documents/Projetos/GlicareFlutter\" push -u origin main)",
+      "Bash(gh --version)",
+      "Bash(gh auth *)",
+      "PowerShell(gh --version)",
+      "Bash(git -C Glicare log --oneline -10)",
+      "Bash(git -C Glicare status)",
+      "Bash(flutter run *)",
+      "Bash(flutter analyze *)"
     ]
   }
 }

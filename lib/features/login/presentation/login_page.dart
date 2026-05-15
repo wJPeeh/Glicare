@@ -3,11 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../core/config/feature_flags.dart';
 import '../../../core/router/app_router.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/widgets/glicare_app_bar.dart';
 import '../../../core/widgets/gradient_button.dart';
 import '../../auth/presentation/auth_controller.dart';
+
+enum _PendingAuth { none, email, google, facebook, reset }
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
@@ -21,6 +24,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _obscure = true;
+  _PendingAuth _pending = _PendingAuth.none;
 
   @override
   void dispose() {
@@ -29,32 +33,44 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     super.dispose();
   }
 
+  Future<void> _run(
+    _PendingAuth action,
+    Future<bool> Function() task, {
+    VoidCallback? onSuccess,
+  }) async {
+    setState(() => _pending = action);
+    final ok = await task();
+    if (!mounted) return;
+    setState(() => _pending = _PendingAuth.none);
+    if (ok && onSuccess != null) onSuccess();
+  }
+
   Future<void> _submit() async {
     if (!_formKey.currentState!.validate()) return;
-    final ok = await ref
-        .read(authControllerProvider.notifier)
-        .signInWithEmail(
-          email: _emailController.text,
-          password: _passwordController.text,
-        );
-    if (!mounted) return;
-    if (ok) context.go(AppRoutes.dashboard);
+    await _run(
+      _PendingAuth.email,
+      () => ref.read(authControllerProvider.notifier).signInWithEmail(
+            email: _emailController.text,
+            password: _passwordController.text,
+          ),
+      onSuccess: () => context.go(AppRoutes.dashboard),
+    );
   }
 
   Future<void> _signInWithGoogle() async {
-    final ok = await ref
-        .read(authControllerProvider.notifier)
-        .signInWithGoogle();
-    if (!mounted) return;
-    if (ok) context.go(AppRoutes.dashboard);
+    await _run(
+      _PendingAuth.google,
+      () => ref.read(authControllerProvider.notifier).signInWithGoogle(),
+      onSuccess: () => context.go(AppRoutes.dashboard),
+    );
   }
 
   Future<void> _signInWithFacebook() async {
-    final ok = await ref
-        .read(authControllerProvider.notifier)
-        .signInWithFacebook();
-    if (!mounted) return;
-    if (ok) context.go(AppRoutes.dashboard);
+    await _run(
+      _PendingAuth.facebook,
+      () => ref.read(authControllerProvider.notifier).signInWithFacebook(),
+      onSuccess: () => context.go(AppRoutes.dashboard),
+    );
   }
 
   Future<void> _forgotPassword() async {
@@ -67,21 +83,18 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       );
       return;
     }
-    final ok = await ref
-        .read(authControllerProvider.notifier)
-        .sendPasswordResetEmail(email);
-    if (!mounted) return;
-    if (ok) {
-      ScaffoldMessenger.of(context).showSnackBar(
+    await _run(
+      _PendingAuth.reset,
+      () => ref.read(authControllerProvider.notifier).sendPasswordResetEmail(email),
+      onSuccess: () => ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Link de redefinição enviado para $email.')),
-      );
-    }
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    final authState = ref.watch(authControllerProvider);
-    final isLoading = authState.isLoading;
+    final busy = _pending != _PendingAuth.none;
 
     ref.listen<AsyncValue<void>>(authControllerProvider, (previous, next) {
       next.whenOrNull(
@@ -148,6 +161,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 hint: 'nome@exemplo.com',
                 icon: Icons.mail_outline,
                 controller: _emailController,
+                enabled: !busy,
                 keyboardType: TextInputType.emailAddress,
                 textInputAction: TextInputAction.next,
                 autofillHints: const [AutofillHints.email],
@@ -166,6 +180,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 hint: '••••••••',
                 icon: Icons.lock_outline,
                 controller: _passwordController,
+                enabled: !busy,
                 obscure: _obscure,
                 textInputAction: TextInputAction.done,
                 autofillHints: const [AutofillHints.password],
@@ -176,7 +191,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         ? Icons.visibility_outlined
                         : Icons.visibility_off_outlined,
                   ),
-                  onPressed: () => setState(() => _obscure = !_obscure),
+                  onPressed: busy
+                      ? null
+                      : () => setState(() => _obscure = !_obscure),
                   color: AppColors.outline,
                 ),
                 validator: (value) {
@@ -190,21 +207,27 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: isLoading ? null : _forgotPassword,
-                  child: Text(
-                    'Esqueci minha senha',
-                    style: GoogleFonts.manrope(
-                      color: AppColors.primary,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 13,
-                    ),
-                  ),
+                  onPressed: busy ? null : _forgotPassword,
+                  child: _pending == _PendingAuth.reset
+                      ? const SizedBox(
+                          width: 16,
+                          height: 16,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                      : Text(
+                          'Esqueci minha senha',
+                          style: GoogleFonts.manrope(
+                            color: AppColors.primary,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 13,
+                          ),
+                        ),
                 ),
               ),
               const SizedBox(height: 16),
               GradientButton(
-                label: isLoading ? 'Entrando...' : 'Entrar',
-                onPressed: isLoading ? null : _submit,
+                label: _pending == _PendingAuth.email ? 'Entrando...' : 'Entrar',
+                onPressed: busy ? null : _submit,
               ),
               const SizedBox(height: 32),
               Row(
@@ -243,18 +266,22 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       icon: Icons.g_mobiledata,
                       label: 'Google',
                       color: const Color(0xFFEA4335),
-                      onTap: isLoading ? null : _signInWithGoogle,
+                      loading: _pending == _PendingAuth.google,
+                      onTap: busy ? null : _signInWithGoogle,
                     ),
                   ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: _SocialButton(
-                      icon: Icons.facebook,
-                      label: 'Facebook',
-                      color: const Color(0xFF1877F2),
-                      onTap: isLoading ? null : _signInWithFacebook,
+                  if (kFacebookLoginEnabled) ...[
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: _SocialButton(
+                        icon: Icons.facebook,
+                        label: 'Facebook',
+                        color: const Color(0xFF1877F2),
+                        loading: _pending == _PendingAuth.facebook,
+                        onTap: busy ? null : _signInWithFacebook,
+                      ),
                     ),
-                  ),
+                  ],
                 ],
               ),
               const SizedBox(height: 16),
@@ -269,7 +296,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       borderRadius: BorderRadius.circular(16),
                     ),
                   ),
-                  onPressed: isLoading
+                  onPressed: busy
                       ? null
                       : () => context.go(AppRoutes.susIntegration),
                   icon: const Icon(Icons.account_balance, size: 20),
@@ -292,7 +319,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: isLoading ? null : () => context.go(AppRoutes.signup),
+                    onTap: busy ? null : () => context.go(AppRoutes.signup),
                     child: Text(
                       'Crie uma agora',
                       style: GoogleFonts.manrope(
@@ -319,6 +346,7 @@ class _Field extends StatelessWidget {
     required this.hint,
     required this.icon,
     required this.controller,
+    this.enabled = true,
     this.obscure = false,
     this.suffix,
     this.validator,
@@ -332,6 +360,7 @@ class _Field extends StatelessWidget {
   final String hint;
   final IconData icon;
   final TextEditingController controller;
+  final bool enabled;
   final bool obscure;
   final Widget? suffix;
   final String? Function(String?)? validator;
@@ -358,6 +387,7 @@ class _Field extends StatelessWidget {
         ),
         TextFormField(
           controller: controller,
+          enabled: enabled,
           obscureText: obscure,
           validator: validator,
           keyboardType: keyboardType,
@@ -406,11 +436,13 @@ class _SocialButton extends StatelessWidget {
     required this.label,
     required this.color,
     required this.onTap,
+    this.loading = false,
   });
   final IconData icon;
   final String label;
   final Color color;
   final VoidCallback? onTap;
+  final bool loading;
 
   @override
   Widget build(BuildContext context) {
@@ -427,23 +459,32 @@ class _SocialButton extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           borderRadius: BorderRadius.circular(16),
-          onTap: onTap,
+          onTap: loading ? null : onTap,
           child: Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(icon, color: color, size: 22),
-                const SizedBox(width: 8),
-                Text(
-                  label,
-                  style: GoogleFonts.manrope(
-                    fontWeight: FontWeight.w800,
-                    color: AppColors.onSurface,
-                    fontSize: 14,
+            child: loading
+                ? SizedBox(
+                    width: 20,
+                    height: 20,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      valueColor: AlwaysStoppedAnimation<Color>(color),
+                    ),
+                  )
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(icon, color: color, size: 22),
+                      const SizedBox(width: 8),
+                      Text(
+                        label,
+                        style: GoogleFonts.manrope(
+                          fontWeight: FontWeight.w800,
+                          color: AppColors.onSurface,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
           ),
         ),
       ),

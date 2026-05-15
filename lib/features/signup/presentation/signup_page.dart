@@ -128,6 +128,7 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                       hint: 'Como devemos te chamar?',
                       icon: Icons.person_outline,
                       controller: _nameController,
+                      enabled: !isLoading,
                       textInputAction: TextInputAction.next,
                       autofillHints: const [AutofillHints.name],
                       validator: (value) {
@@ -142,6 +143,7 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                       hint: 'seu@email.com',
                       icon: Icons.mail_outline,
                       controller: _emailController,
+                      enabled: !isLoading,
                       keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
                       autofillHints: const [AutofillHints.email],
@@ -161,6 +163,7 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                       icon: Icons.lock_outline,
                       obscure: true,
                       controller: _passwordController,
+                      enabled: !isLoading,
                       textInputAction: TextInputAction.next,
                       autofillHints: const [AutofillHints.newPassword],
                       validator: (value) {
@@ -177,6 +180,7 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                       icon: Icons.lock_reset_outlined,
                       obscure: true,
                       controller: _confirmController,
+                      enabled: !isLoading,
                       textInputAction: TextInputAction.done,
                       onSubmitted: (_) => _submit(),
                       validator: (value) {
@@ -272,6 +276,7 @@ class _SignupField extends StatelessWidget {
     required this.hint,
     required this.icon,
     required this.controller,
+    this.enabled = true,
     this.obscure = false,
     this.validator,
     this.keyboardType,
@@ -284,6 +289,7 @@ class _SignupField extends StatelessWidget {
   final String hint;
   final IconData icon;
   final TextEditingController controller;
+  final bool enabled;
   final bool obscure;
   final String? Function(String?)? validator;
   final TextInputType? keyboardType;
@@ -309,6 +315,7 @@ class _SignupField extends StatelessWidget {
         ),
         TextFormField(
           controller: controller,
+          enabled: enabled,
           obscureText: obscure,
           validator: validator,
           keyboardType: keyboardType,

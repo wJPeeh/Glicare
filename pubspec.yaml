@@ -19,12 +19,13 @@ dependencies:
   google_fonts: ^8.1.0
   firebase_core: ^4.7.0
   firebase_auth: ^6.4.0
-  cloud_firestore: ^6.3.0
   firebase_messaging: ^16.2.0
   firebase_crashlytics: ^5.2.0
   firebase_analytics: ^12.3.0
   google_sign_in: ^6.2.1
   flutter_facebook_auth: ^7.1.1
+  firebase_database: ^12.4.0
+  fl_chart: ^0.69.0
 
 dev_dependencies:
   flutter_test:

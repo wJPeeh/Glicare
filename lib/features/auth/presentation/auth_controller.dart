@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/auth_repository.dart';
@@ -96,9 +97,28 @@ String describeAuthError(Object error) {
         return 'Muitas tentativas. Tente novamente em instantes.';
       case 'account-exists-with-different-credential':
         return 'Já existe uma conta com este e-mail usando outro provedor.';
+      case 'facebook-no-token':
+      case 'facebook-login-failed':
+        return error.message ?? 'Falha no login do Facebook.';
       default:
         return error.message ?? 'Falha na autenticação (${error.code}).';
     }
+  }
+  if (error is PlatformException) {
+    final code = error.code.toLowerCase();
+    if (code.contains('network')) {
+      return 'Sem conexão. Verifique sua internet.';
+    }
+    if (code.contains('cancel')) {
+      return 'Login cancelado.';
+    }
+    if (code == 'sign_in_failed' ||
+        code == '12500' ||
+        code == '10' ||
+        code == 'developer_error') {
+      return 'Falha no login com Google. Verifique a configuração do app (SHA-1, OAuth client).';
+    }
+    return error.message ?? 'Falha no login social (${error.code}).';
   }
   return 'Erro inesperado: $error';
 }

@@ -1,6 +1,184 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 
+import '../router/app_router.dart';
 import '../theme/app_colors.dart';
+
+Future<void> showRegisterActionSheet(BuildContext context) {
+  return showModalBottomSheet<void>(
+    context: context,
+    backgroundColor: Colors.transparent,
+    isScrollControlled: true,
+    builder: (sheetContext) => const _RegisterActionSheet(),
+  );
+}
+
+class _RegisterActionSheet extends StatelessWidget {
+  const _RegisterActionSheet();
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      top: false,
+      child: Container(
+        margin: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+        padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(28),
+          boxShadow: AppColors.softShadow(y: 24, blur: 48, opacity: 0.18),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 40,
+              height: 4,
+              margin: const EdgeInsets.only(bottom: 12),
+              decoration: BoxDecoration(
+                color: AppColors.outlineVariant.withValues(alpha: 0.4),
+                borderRadius: BorderRadius.circular(99),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 4, 8, 12),
+              child: Row(
+                children: [
+                  Text(
+                    'Registrar',
+                    style: GoogleFonts.plusJakartaSans(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w800,
+                      color: AppColors.onSurface,
+                      letterSpacing: -0.3,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            _RegisterOption(
+              icon: Icons.bloodtype,
+              tint: AppColors.primary,
+              title: 'Glicemia',
+              subtitle: 'Medir e registrar mg/dL',
+              onTap: () {
+                Navigator.of(context).pop();
+                GoRouter.of(context).go(AppRoutes.glucoseRegister);
+              },
+            ),
+            const SizedBox(height: 8),
+            _RegisterOption(
+              icon: Icons.restaurant,
+              tint: AppColors.secondary,
+              title: 'Refeição',
+              subtitle: 'Logar o que comeu',
+              onTap: () {
+                Navigator.of(context).pop();
+                GoRouter.of(context).go(AppRoutes.mealLog);
+              },
+            ),
+            const SizedBox(height: 8),
+            _RegisterOption(
+              icon: Icons.medication,
+              tint: AppColors.error,
+              title: 'Medicamento',
+              subtitle: 'Registrar uma dose tomada',
+              onTap: () {
+                Navigator.of(context).pop();
+                GoRouter.of(context).go(AppRoutes.medicationRegister);
+              },
+            ),
+            const SizedBox(height: 8),
+            _RegisterOption(
+              icon: Icons.fitness_center,
+              tint: AppColors.tertiaryFixedDim,
+              title: 'Atividade Física',
+              subtitle: 'Caminhada, corrida, treino…',
+              onTap: () {
+                Navigator.of(context).pop();
+                GoRouter.of(context).go(AppRoutes.activityRegister);
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _RegisterOption extends StatelessWidget {
+  const _RegisterOption({
+    required this.icon,
+    required this.tint,
+    required this.title,
+    required this.subtitle,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final Color tint;
+  final String title;
+  final String subtitle;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(20),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+          child: Row(
+            children: [
+              Container(
+                width: 48,
+                height: 48,
+                decoration: BoxDecoration(
+                  color: tint.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: Icon(icon, color: tint, size: 22),
+              ),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: GoogleFonts.plusJakartaSans(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w800,
+                        color: AppColors.onSurface,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      subtitle,
+                      style: GoogleFonts.manrope(
+                        fontSize: 12,
+                        color: AppColors.onSurfaceVariant,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(
+                Icons.arrow_forward_ios,
+                color: AppColors.outlineVariant,
+                size: 14,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 class GlicareBottomNav extends StatelessWidget {
   const GlicareBottomNav({
@@ -42,6 +220,7 @@ class GlicareBottomNav extends StatelessWidget {
         ),
         child: Stack(
           alignment: Alignment.center,
+          clipBehavior: Clip.none,
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),

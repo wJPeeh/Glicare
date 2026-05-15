@@ -222,14 +222,14 @@ class MealImpactPage extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  const Icon(Icons.bolt, color: Colors.white),
+                  const Icon(Icons.bloodtype, color: Colors.white),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Insulina Requerida',
+                          'Glicemia esperada (pico)',
                           style: GoogleFonts.manrope(
                             fontWeight: FontWeight.w800,
                             color: Colors.white,
@@ -241,7 +241,7 @@ class MealImpactPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text(
-                              '4.2',
+                              '148',
                               style: GoogleFonts.plusJakartaSans(
                                 fontSize: 28,
                                 fontWeight: FontWeight.w900,
@@ -251,7 +251,12 @@ class MealImpactPage extends StatelessWidget {
                             const SizedBox(width: 4),
                             Padding(
                               padding: const EdgeInsets.only(bottom: 6),
-                              child: Text('u', style: GoogleFonts.manrope(color: Colors.white.withValues(alpha: 0.8))),
+                              child: Text(
+                                'mg/dL',
+                                style: GoogleFonts.manrope(
+                                  color: Colors.white.withValues(alpha: 0.8),
+                                ),
+                              ),
                             ),
                           ],
                         ),
