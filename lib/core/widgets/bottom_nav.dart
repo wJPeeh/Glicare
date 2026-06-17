@@ -14,6 +14,28 @@ Future<void> showRegisterActionSheet(BuildContext context) {
   );
 }
 
+/// Comportamento padrão de toque da barra de navegação raiz.
+/// Usado por todas as telas que exibem a [GlicareBottomNav].
+void glicareRootNavTap(BuildContext context, int index) {
+  switch (index) {
+    case 0:
+      context.go(AppRoutes.dashboard);
+      break;
+    case 1:
+      context.go(AppRoutes.evolutionCharts);
+      break;
+    case 2:
+      showRegisterActionSheet(context);
+      break;
+    case 3:
+      context.go(AppRoutes.smartAlerts);
+      break;
+    case 4:
+      context.go(AppRoutes.profile);
+      break;
+  }
+}
+
 class _RegisterActionSheet extends StatelessWidget {
   const _RegisterActionSheet();
 

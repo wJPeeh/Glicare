@@ -27,7 +27,10 @@ class _EvolutionChartsPageState extends ConsumerState<EvolutionChartsPage> {
     final readings = ref.watch(recentGlucoseReadingsProvider);
     final stats = ref.watch(glucoseStatsProvider(_days));
     return Scaffold(
-      bottomNavigationBar: const GlicareBottomNav(activeIndex: 1),
+      bottomNavigationBar: GlicareBottomNav(
+        activeIndex: 1,
+        onTap: (i) => glicareRootNavTap(context, i),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(24, 8, 24, 100),

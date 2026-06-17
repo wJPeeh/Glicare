@@ -16,6 +16,7 @@ import '../../auth/presentation/auth_controller.dart';
 import '../../auth/presentation/auth_providers.dart';
 import '../../glucose_log/data/glucose_reading.dart';
 import '../../glucose_log/presentation/glucose_providers.dart';
+import '../../profile/presentation/profile_providers.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
@@ -63,8 +64,11 @@ class _DashboardHeader extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(currentUserProvider);
+    final profile = ref.watch(userProfileProvider).asData?.value;
     final displayName = _resolveName(user?.displayName, user?.email);
-    final photoUrl = user?.photoURL;
+    final photoUrl = (profile?.hasCustomPhoto ?? false)
+        ? profile!.customPhotoUrl
+        : user?.photoURL;
 
     Future<void> handleLogout() async {
       await ref.read(authControllerProvider.notifier).signOut();

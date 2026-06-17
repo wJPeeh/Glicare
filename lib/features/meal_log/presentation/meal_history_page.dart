@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
+import '../../../core/router/app_router.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/widgets/glicare_app_bar.dart';
 import '../../auth/presentation/auth_providers.dart';
@@ -64,6 +66,9 @@ class MealHistoryPage extends ConsumerWidget {
                       padding: const EdgeInsets.only(bottom: 12),
                       child: _MealCard(
                         log: log,
+                        onTap: () => context.push(
+                          '${AppRoutes.mealImpact}?id=${log.id}',
+                        ),
                         onDelete: () => _confirmDelete(context, ref, log),
                       ),
                     ),
@@ -161,22 +166,32 @@ class _DayGroup {
 }
 
 class _MealCard extends StatelessWidget {
-  const _MealCard({required this.log, required this.onDelete});
+  const _MealCard({
+    required this.log,
+    required this.onTap,
+    required this.onDelete,
+  });
   final MealLog log;
+  final VoidCallback onTap;
   final VoidCallback onDelete;
 
   @override
   Widget build(BuildContext context) {
     final style = _categoryStyles[log.category]!;
     final timeFormatter = DateFormat('HH:mm');
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: AppColors.surfaceContainerLowest,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
         borderRadius: BorderRadius.circular(20),
-        boxShadow: AppColors.softShadow(),
-      ),
-      child: Column(
+        child: Ink(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: AppColors.surfaceContainerLowest,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: AppColors.softShadow(),
+          ),
+          child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
@@ -304,7 +319,9 @@ class _MealCard extends StatelessWidget {
               ],
             ),
           ],
-        ],
+            ],
+          ),
+        ),
       ),
     );
   }

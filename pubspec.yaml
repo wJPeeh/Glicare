@@ -26,12 +26,35 @@ dependencies:
   flutter_facebook_auth: ^7.1.1
   firebase_database: ^12.4.0
   fl_chart: ^0.69.0
+  flutter_local_notifications: ^21.0.0
+  timezone: ^0.11.0
+  image_picker: ^1.2.2
+  firebase_storage: ^13.4.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  integration_test:
+    sdk: flutter
+
+  firebase_auth_mocks: ^0.15.2
+
   flutter_lints: ^3.0.0
+  flutter_native_splash: ^2.4.4
 
 flutter:
   uses-material-design: true
+
+# Splash nativo (antes do motor do Flutter subir). Gera os arquivos de
+# Android/iOS automaticamente. Para regerar após mudar algo:
+#   dart run flutter_native_splash:create
+flutter_native_splash:
+  color: "#005F9C"
+  image: assets/splash/glicare_logo.png
+  android_12:
+    color: "#005F9C"
+    image: assets/splash/glicare_logo_android12.png
+  android: true
+  ios: true
+  web: false

@@ -1,37 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/router/app_router.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/widgets/bottom_nav.dart';
+import '../../analytics/data/glucose_analytics.dart';
+import '../../analytics/presentation/analytics_providers.dart';
+import '../../glucose_log/data/glucose_reading.dart';
+import '../../glucose_log/presentation/glucose_providers.dart';
+import '../../medication/data/medication_adherence.dart';
+import '../../medication/data/medication_schedule.dart';
+import '../../medication/presentation/medication_log_providers.dart';
 
-class SmartAlertsPage extends StatefulWidget {
+class SmartAlertsPage extends ConsumerStatefulWidget {
   const SmartAlertsPage({super.key});
 
   @override
-  State<SmartAlertsPage> createState() => _SmartAlertsPageState();
+  ConsumerState<SmartAlertsPage> createState() => _SmartAlertsPageState();
 }
 
-class _SmartAlertsPageState extends State<SmartAlertsPage> {
+class _SmartAlertsPageState extends ConsumerState<SmartAlertsPage> {
   final Set<String> _dismissed = <String>{};
 
   void _dismiss(String id) {
     setState(() => _dismissed.add(id));
   }
 
-  void _showSnack(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        backgroundColor: AppColors.secondary,
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    final alerts = _buildAlerts();
+    final readings =
+        ref.watch(recentGlucoseReadingsProvider).asData?.value ??
+            const <GlucoseReading>[];
+    final stats = ref.watch(glucoseStatsProvider(7)).asData?.value ??
+        GlucoseStats.empty;
+    final doses = ref.watch(todaysDosesProvider).asData?.value ??
+        const <ScheduledDose>[];
+    final lowStock = ref.watch(lowestStockScheduleProvider).asData?.value;
+
+    final alerts = _buildAlerts(
+      readings: readings,
+      stats: stats,
+      doses: doses,
+      lowStock: lowStock,
+    );
     final visible = alerts.where((a) => !_dismissed.contains(a.id)).toList();
 
     return Scaffold(
@@ -165,68 +178,197 @@ class _SmartAlertsPageState extends State<SmartAlertsPage> {
     );
   }
 
-  List<_AlertData> _buildAlerts() => [
-        _AlertData(
+  /// Gera os alertas a partir dos dados reais do usuário (glicemia, medicação
+  /// e estatísticas recentes). Retorna lista vazia quando está tudo em ordem.
+  List<_AlertData> _buildAlerts({
+    required List<GlucoseReading> readings,
+    required GlucoseStats stats,
+    required List<ScheduledDose> doses,
+    required MedicationSchedule? lowStock,
+  }) {
+    final now = DateTime.now();
+    final alerts = <_AlertData>[];
+
+    // 1. Alerta baseado na última medição de glicemia.
+    if (readings.isNotEmpty) {
+      final latest = readings.first; // ordenadas desc por measuredAt
+      final range = rangeFor(latest.valueMgdl);
+      final ago = _formatAgo(latest.measuredAt, now);
+      if (range == GlucoseRange.hiper) {
+        alerts.add(_AlertData(
           id: 'hyperglycemia',
           accent: AppColors.tertiary,
           badge: AppColors.tertiaryContainer,
           badgeFg: AppColors.onTertiaryContainer,
           icon: Icons.warning,
-          title: 'Atenção: Risco de Hiperglicemia',
-          meta: 'DETECTADO HÁ 15 MIN',
+          title: 'Atenção: Glicemia Alta',
+          meta: 'ÚLTIMA MEDIÇÃO $ago • ${latest.valueMgdl} MG/DL',
           body:
-              'Sua curva glicêmica apresenta tendência de alta após o almoço. Pode ultrapassar 180 mg/dL na próxima hora.',
+              'Sua última medição (${latest.valueMgdl} mg/dL) está acima da faixa alvo (70–140). Pequenas ações agora ajudam a estabilizar.',
           recommendations: const [
             ('Beba 300ml de água agora.', Icons.water_drop),
             ('Considere uma caminhada leve de 10 min.', Icons.directions_walk),
           ],
           primaryLabel: 'Registrar Glicemia',
           primaryColor: AppColors.tertiaryFixedDim,
-          onPrimary: () {
-            context.push(AppRoutes.glucoseRegister);
-          },
+          onPrimary: () => context.push(AppRoutes.glucoseRegister),
           secondaryLabel: 'Ignorar',
           onSecondary: () => _dismiss('hyperglycemia'),
-        ),
-        _AlertData(
-          id: 'medication-time',
-          accent: AppColors.primary,
-          badge: AppColors.primaryContainer.withValues(alpha: 0.4),
-          badgeFg: AppColors.primary,
-          icon: Icons.medication,
-          title: 'Lembrete: Hora da Medicação',
-          meta: 'PROGRAMADO PARA 18:00',
+        ));
+      } else if (range == GlucoseRange.hipo) {
+        alerts.add(_AlertData(
+          id: 'hypoglycemia',
+          accent: AppColors.error,
+          badge: AppColors.errorContainer,
+          badgeFg: AppColors.onErrorContainer,
+          icon: Icons.priority_high,
+          title: 'Cuidado: Glicemia Baixa',
+          meta: 'ÚLTIMA MEDIÇÃO $ago • ${latest.valueMgdl} MG/DL',
           body:
-              'Está na hora da sua dose de Metformina (850mg). Manter a regularidade é essencial para sua hemoglobina glicada.',
-          infoRow: const [
-            ('Última dose registrada', 'Ontem, 18:05'),
-            ('Estoque', '12 dias restantes'),
+              'Sua última medição (${latest.valueMgdl} mg/dL) está abaixo de 70. Aja rápido para evitar uma hipoglicemia.',
+          recommendations: const [
+            ('Consuma 15g de carboidrato rápido (suco/balas).',
+                Icons.local_drink),
+            ('Refaça a medição em 15 minutos.', Icons.timer),
           ],
-          primaryLabel: 'Confirmar Ingestão',
-          primaryColor: AppColors.primary,
-          onPrimary: () {
-            _dismiss('medication-time');
-            context.push(AppRoutes.medicationRegister);
-          },
+          primaryLabel: 'Registrar Glicemia',
+          primaryColor: AppColors.error,
+          onPrimary: () => context.push(AppRoutes.glucoseRegister),
+          secondaryLabel: 'Ignorar',
+          onSecondary: () => _dismiss('hypoglycemia'),
+        ));
+      }
+    }
+
+    // 2. Tendência de alta nas medições recentes.
+    if (stats.count >= 3 && stats.trend == TrendDirection.piorando) {
+      alerts.add(_AlertData(
+        id: 'trend-up',
+        accent: AppColors.tertiary,
+        badge: AppColors.tertiaryContainer.withValues(alpha: 0.6),
+        badgeFg: AppColors.onTertiaryContainer,
+        icon: Icons.trending_up,
+        title: 'Sua glicemia está em alta',
+        meta: 'TENDÊNCIA DOS ÚLTIMOS 7 DIAS',
+        body:
+            'A média recente é de ${stats.average.round()} mg/dL e vem subindo. Vale revisar alimentação e adesão à medicação.',
+        infoRow: [
+          ('Média (7 dias)', '${stats.average.round()} mg/dL'),
+          ('No alvo', '${stats.timeInRangePct.toStringAsFixed(0)}%'),
+        ],
+        primaryLabel: 'Ver Evolução',
+        primaryColor: AppColors.tertiaryFixedDim,
+        onPrimary: () => context.push(AppRoutes.evolutionCharts),
+        secondaryLabel: 'Ignorar',
+        onSecondary: () => _dismiss('trend-up'),
+      ));
+    }
+
+    // 3. Dose de medicação atrasada ou pendente.
+    final pendingDose = doses
+        .where((d) =>
+            d.status == DoseStatus.atrasado || d.status == DoseStatus.pendente)
+        .fold<ScheduledDose?>(null, (earliest, d) {
+      if (earliest == null) return d;
+      return d.scheduledAt.isBefore(earliest.scheduledAt) ? d : earliest;
+    });
+    if (pendingDose != null) {
+      final s = pendingDose.schedule;
+      final late = pendingDose.status == DoseStatus.atrasado;
+      final dosageText = s.dosage.trim().isNotEmpty ? ' (${s.dosage})' : '';
+      alerts.add(_AlertData(
+        id: 'medication-${s.id}-${pendingDose.expectedMinute}',
+        accent: late ? AppColors.error : AppColors.primary,
+        badge: late
+            ? AppColors.errorContainer
+            : AppColors.primaryContainer.withValues(alpha: 0.4),
+        badgeFg: late ? AppColors.onErrorContainer : AppColors.primary,
+        icon: Icons.medication,
+        title: late ? 'Dose Atrasada' : 'Lembrete: Hora da Medicação',
+        meta: 'PROGRAMADO PARA ${formatMinutes(pendingDose.expectedMinute)}',
+        body:
+            'Está na hora da sua dose de ${s.name}$dosageText. Manter a regularidade é essencial para o seu controle glicêmico.',
+        infoRow: s.tracksStock && s.daysOfStockRemaining != null
+            ? [
+                ('Horário', formatMinutes(pendingDose.expectedMinute)),
+                ('Estoque', '${s.daysOfStockRemaining} dias restantes'),
+              ]
+            : null,
+        primaryLabel: 'Confirmar Ingestão',
+        primaryColor: late ? AppColors.error : AppColors.primary,
+        onPrimary: () => context.push(AppRoutes.medicationRegister),
+        secondaryLabel: 'Ignorar',
+        onSecondary: () =>
+            _dismiss('medication-${s.id}-${pendingDose.expectedMinute}'),
+      ));
+    }
+
+    // 4. Estoque de medicação baixo.
+    final lowDays = lowStock?.daysOfStockRemaining;
+    if (lowStock != null && lowDays != null && lowDays <= 7) {
+      alerts.add(_AlertData(
+        id: 'low-stock-${lowStock.id}',
+        accent: AppColors.tertiary,
+        badge: AppColors.tertiaryContainer.withValues(alpha: 0.5),
+        badgeFg: AppColors.onTertiaryContainer,
+        icon: Icons.inventory_2,
+        title: 'Estoque acabando',
+        meta: 'ESTOQUE BAIXO',
+        body:
+            'Seu estoque de ${lowStock.name} dura cerca de $lowDays ${lowDays == 1 ? 'dia' : 'dias'}. Programe a reposição para não interromper o tratamento.',
+        infoRow: [
+          ('Medicação', lowStock.name),
+          ('Restante', '$lowDays ${lowDays == 1 ? 'dia' : 'dias'}'),
+        ],
+        primaryLabel: 'Ver Medicamentos',
+        primaryColor: AppColors.tertiaryFixedDim,
+        onPrimary: () => context.push(AppRoutes.medicationHistory),
+        secondaryLabel: 'Ignorar',
+        onSecondary: () => _dismiss('low-stock-${lowStock.id}'),
+      ));
+    }
+
+    // 5. Conquista: controle dentro do alvo na última semana.
+    if (stats.count >= 3 && stats.timeInRangePct >= 70) {
+      alerts.add(_AlertData(
+        id: 'goal-achieved',
+        accent: AppColors.secondary,
+        badge: AppColors.secondaryContainer,
+        badgeFg: AppColors.onSecondaryContainer,
+        icon: Icons.workspace_premium,
+        title: 'Parabéns! Você está no controle',
+        meta: 'ÚLTIMOS 7 DIAS',
+        body:
+            'Você manteve ${stats.timeInRangePct.toStringAsFixed(0)}% das medições dentro da faixa alvo. Continue assim!',
+        statsGrid: [
+          ('NO ALVO', '${stats.timeInRangePct.toStringAsFixed(0)}%'),
+          (
+            'VARIABILIDADE',
+            stats.stdDev <= 35 ? 'Baixa' : 'Alta',
+          ),
+        ],
+        shareLabel: 'Compartilhar Progresso',
+        onShare: () => ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Você manteve ${stats.timeInRangePct.toStringAsFixed(0)}% no alvo nos últimos 7 dias 🎉',
+            ),
+            backgroundColor: AppColors.secondary,
+          ),
         ),
-        _AlertData(
-          id: 'goal-achieved',
-          accent: AppColors.secondary,
-          badge: AppColors.secondaryContainer,
-          badgeFg: AppColors.onSecondaryContainer,
-          icon: Icons.workspace_premium,
-          title: 'Parabéns! Meta Diária Atingida!',
-          meta: 'CONQUISTA DE HOJE',
-          body:
-              'Você manteve seus níveis dentro do alvo por 92% do dia. Sua disciplina hoje foi exemplar.',
-          statsGrid: const [
-            ('TEMPO NO ALVO', '22h 05m'),
-            ('VARIABILIDADE', 'Baixa'),
-          ],
-          shareLabel: 'Compartilhar Progresso',
-          onShare: () => _showSnack('Compartilhamento em breve.'),
-        ),
-      ];
+      ));
+    }
+
+    return alerts;
+  }
+
+  String _formatAgo(DateTime when, DateTime now) {
+    final diff = now.difference(when);
+    if (diff.inMinutes < 1) return 'AGORA';
+    if (diff.inMinutes < 60) return 'HÁ ${diff.inMinutes} MIN';
+    if (diff.inHours < 24) return 'HÁ ${diff.inHours}H';
+    return 'HÁ ${diff.inDays} ${diff.inDays == 1 ? 'DIA' : 'DIAS'}';
+  }
 }
 
 class _EmptyState extends StatelessWidget {

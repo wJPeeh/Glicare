@@ -5,6 +5,7 @@ import 'package:intl/date_symbol_data_local.dart';
 
 import 'core/router/app_router.dart';
 import 'core/theme/app_theme.dart';
+import 'features/medication/data/medication_notifications.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -13,6 +14,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await initializeDateFormatting('pt_BR');
+  await MedicationNotifications.instance.ensureInitialized();
   runApp(const ProviderScope(child: GlicareApp()));
 }
 

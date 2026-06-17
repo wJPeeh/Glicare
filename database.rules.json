@@ -1,0 +1,36 @@
+{
+  "rules": {
+    "share_codes": {
+      "$code": {
+        ".read": "auth != null",
+        ".write": "auth != null && newData.val() === auth.uid"
+      }
+    },
+    "users": {
+      "$uid": {
+        ".read": "auth != null && (auth.uid === $uid || data.child('care_team/shareEnabled').val() === true)",
+        ".write": "auth != null && auth.uid === $uid",
+        "glucose_readings": {
+          ".indexOn": ["measuredAt"]
+        },
+        "meal_logs": {
+          ".indexOn": ["eatenAt"]
+        },
+        "medication_logs": {
+          ".indexOn": ["takenAt"]
+        },
+        "medication_schedules": {
+          ".write": "auth != null && (auth.uid === $uid || root.child('users').child($uid).child('care_team').child('shareEnabled').val() === true)"
+        },
+        "care_notes": {
+          ".indexOn": ["createdAt"],
+          ".write": "auth != null && (auth.uid === $uid || root.child('users').child($uid).child('care_team').child('shareEnabled').val() === true)"
+        },
+        "chat": {
+          ".indexOn": ["createdAt"],
+          ".write": "auth != null && (auth.uid === $uid || root.child('users').child($uid).child('care_team').child('shareEnabled').val() === true)"
+        }
+      }
+    }
+  }
+}
